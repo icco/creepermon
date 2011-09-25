@@ -36,7 +36,12 @@ end
 
 get '/authed' do
   if params["code"]
-    GitHub.access_token(params["code"]).inspect
+    response = GitHub.access_token(params["code"])
+    
+    p response.request
+    p response.response
+
+    "Code recieved."
   elsif params["access_token"]
     params["access_token"]
   end
