@@ -43,7 +43,7 @@ get '/authed' do
   begin
     access_token = client.auth_code.get_token(params[:code])
     user = JSON.parse(access_token.get('/user').body)
-    
+
     # Pull out the data we care about
     session['user'] = user.login
     session['token'] = access_token
