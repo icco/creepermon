@@ -29,22 +29,38 @@ end
 
 
 ## Oauth Stuff for GitHub
+# Based off of https://gist.github.com/4df21cf628cc3a8f1568 because I'm an idiot...
+def client
+  OAuth2::Client.new(GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, {
+    :ssl => {:ca_file => '/etc/ssl/ca-bundle.pem'},
+    :site => 'https://api.github.com',
+    :authorize_url => 'https://github.com/login/oauth/authorize',
+    :token_url => 'https://github.com/login/oauth/access_token'
+  })
+end
+
 get '/login' do
-  client = GITHUB_CLIENT_ID
-  redirect "https://github.com/login/oauth/authorize?client_id=#{client}"
+  url = client.auth_code.authorize_url(:redirect_uri => redirect_uri, :scope => 'user')
+  puts "Redirecting to URL: #{url.inspect}"
+  redirect url
 end
 
 get '/authed' do
-  if params["code"]
-    response = GitHub.access_token(params["code"])
-    
-    p response.request
-    p response.response
-
-    "Code recieved."
-  elsif params["access_token"]
-    params["access_token"]
+  puts params[:code]
+  begin
+    access_token = client.auth_code.get_token(params[:code], :redirect_uri => redirect_uri)
+    user = JSON.parse(access_token.get('/user').body)
+    "<p>Your OAuth access token: #{access_token.token}</p><p>Your extended profile data:\n#{user.inspect}</p>"
+  rescue OAuth2::Error => e
+    %(<p>Outdated ?code=#{params[:code]}:</p><p>#{$!}</p><p><a href="/auth/github">Retry</a></p>)
   end
+end
+
+def redirect_uri(path = '/authed', query = nil)
+  uri = URI.parse(request.url)
+  uri.path  = path
+  uri.query = query
+  uri.to_s
 end
 
 ## Style sheet
@@ -54,18 +70,4 @@ get '/style.css' do
 end
 
 class Entry < Sequel::Model(:entries)
-end
-
-class GitHub
-  include HTTParty
-
-  def GitHub.access_token(code)
-    options = {
-      :client_id => GITHUB_CLIENT_ID,
-      :client_secret => GITHUB_CLIENT_SECRET,
-      :code => code
-    }
-
-    GitHub.post('https://github.com/login/oauth/access_token', options)
-  end
 end
