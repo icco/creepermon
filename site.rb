@@ -51,7 +51,7 @@ get '/authed' do
     user = JSON.parse(access_token.get('/user').body)
     "<p>Your OAuth access token: #{access_token.token}</p><p>Your extended profile data:\n#{user.inspect}</p>"
   rescue OAuth2::Error => e
-    %(<p>Outdated ?code=#{params[:code]}:</p><p>#{$!}</p><p><a href="/auth/github">Retry</a></p>)
+    %(<p>Outdated ?code=#{params[:code]}:</p><p>#{$!}</p><p><a href="/login">Retry</a></p>)
   end
 end
 
