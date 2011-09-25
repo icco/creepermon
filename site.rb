@@ -43,6 +43,11 @@ get '/authed' do
   begin
     access_token = client.auth_code.get_token(params[:code])
     user = JSON.parse(access_token.get('/user').body)
+    
+    # Pull out the data we care about
+    session['user'] = user.login
+    session['token'] = access_token
+
     %(<p>Your OAuth access token: #{access_token.token}</p><p>Your extended profile data:\n#{user.inspect}</p>)
   rescue OAuth2::Error => e
     %(<p>Outdated ?code=#{params[:code]}:</p><p>#{$!}</p><p><a href="/login">Retry</a></p>)
@@ -55,5 +60,5 @@ get '/style.css' do
   less :style
 end
 
-class Entry < Sequel::Model(:entries)
+class Site < Sequel::Model(:sites)
 end
