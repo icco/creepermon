@@ -6,4 +6,4 @@ gem "sequel"
 gem "sqlite3", :groups => [:development]
 gem "pg", :groups => [:production]
 gem "fog"
-
+gem "httparty"
