@@ -16,7 +16,20 @@ configure do
 end
 
 get '/' do
-  erb :index, :locals => {}
+  if session["user"] and session["token"]
+    redirect '/sites'
+  else
+    erb :index, :locals => {}
+  end
+end
+
+get '/sites' do
+  if session["user"] and session["token"]
+    sites = Site.getAll(session["user"], session["token"])
+    erb :sites, :locals => { "sites" => sites }
+  else
+    redirect '/'
+  end
 end
 
 post '/gitpush' do
@@ -61,4 +74,18 @@ get '/style.css' do
 end
 
 class Site < Sequel::Model(:sites)
+  def Site.getAll username, access_token
+    all_repos = JSON.parse(access_token.get('/user/repos').body)
+    sites = Site.find(:user => username)
+
+    all_repos.each do |repo|
+      site = Site.new
+      site.project = repo.name
+      site.user = username
+      site.url = repo.homepage
+      sites.push(site)
+    end
+
+    return sites
+  end
 end
