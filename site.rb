@@ -32,7 +32,6 @@ end
 # Based off of https://gist.github.com/4df21cf628cc3a8f1568 because I'm an idiot...
 def client
   OAuth2::Client.new(GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, {
-    :ssl => {:ca_file => '/etc/ssl/ca-bundle.pem'},
     :site => 'https://api.github.com',
     :authorize_url => 'https://github.com/login/oauth/authorize',
     :token_url => 'https://github.com/login/oauth/access_token'
