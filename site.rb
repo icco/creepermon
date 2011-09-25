@@ -39,27 +39,20 @@ def client
 end
 
 get '/login' do
-  url = client.auth_code.authorize_url(:redirect_uri => redirect_uri, :scope => 'user')
+  url = client.auth_code.authorize_url()
   puts "Redirecting to URL: #{url.inspect}"
   redirect url
 end
 
 get '/authed' do
-  puts params[:code]
+  p params[:code]
   begin
-    access_token = client.auth_code.get_token(params[:code], :redirect_uri => redirect_uri)
+    access_token = client.auth_code.get_token(params[:code])
     user = JSON.parse(access_token.get('/user').body)
     "<p>Your OAuth access token: #{access_token.token}</p><p>Your extended profile data:\n#{user.inspect}</p>"
   rescue OAuth2::Error => e
     %(<p>Outdated ?code=#{params[:code]}:</p><p>#{$!}</p><p><a href="/login">Retry</a></p>)
   end
-end
-
-def redirect_uri(path = '/authed', query = nil)
-  uri = URI.parse(request.url)
-  uri.path  = path
-  uri.query = query
-  uri.to_s
 end
 
 ## Style sheet
