@@ -58,7 +58,7 @@ get '/authed' do
     user = JSON.parse(access_token.get('/user').body)
 
     # Pull out the data we care about
-    session['user'] = user.login
+    session['user'] = user["login"]
     session['token'] = access_token
 
     %(<p>Your OAuth access token: #{access_token.token}</p><p>Your extended profile data:\n#{user.inspect}</p>)
@@ -80,9 +80,9 @@ class Site < Sequel::Model(:sites)
 
     all_repos.each do |repo|
       site = Site.new
-      site.project = repo.name
+      site.project = repo["name"]
       site.user = username
-      site.url = repo.homepage
+      site.url = repo["homepage"]
       sites.push(site)
     end
 
