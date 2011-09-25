@@ -19,14 +19,9 @@ get '/' do
   erb :index, :locals => {}
 end
 
-post '/' do
-  redirect '/'
-end
-
-post '/commit' do
+post '/gitpush' do
   p params
 end
-
 
 ## Oauth Stuff for GitHub
 # Based off of https://gist.github.com/4df21cf628cc3a8f1568 because I'm an idiot...
@@ -45,11 +40,10 @@ get '/login' do
 end
 
 get '/authed' do
-  p params[:code]
   begin
     access_token = client.auth_code.get_token(params[:code])
     user = JSON.parse(access_token.get('/user').body)
-    "<p>Your OAuth access token: #{access_token.token}</p><p>Your extended profile data:\n#{user.inspect}</p>"
+    %(<p>Your OAuth access token: #{access_token.token}</p><p>Your extended profile data:\n#{user.inspect}</p>)
   rescue OAuth2::Error => e
     %(<p>Outdated ?code=#{params[:code]}:</p><p>#{$!}</p><p><a href="/login">Retry</a></p>)
   end
