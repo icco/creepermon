@@ -35,7 +35,11 @@ get '/login' do
 end
 
 get '/authed' do
-  GitHub.access_token(params["code"]).inspect
+  if params["code"]
+    GitHub.access_token(params["code"]).inspect
+  elsif params["access_token"]
+    params["access_token"]
+  end
 end
 
 ## Style sheet
