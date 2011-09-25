@@ -76,7 +76,9 @@ end
 
 class Site < Sequel::Model(:sites)
   def Site.getAll username, access_token
-    all_repos = JSON.parse(client.request(:get, '/user/repos').body)
+    reponse = client.request(:get, '/user/repos')
+    p response
+    all_repos = JSON.parse(response.body)
     sites = Site.find(:user => username)
 
     all_repos.each do |repo|
