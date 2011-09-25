@@ -53,7 +53,6 @@ end
 
 class GitHub
   include HTTParty
-  base_uri 'https://github.com'
 
   def GitHub.access_token(code)
     options = {
@@ -62,6 +61,6 @@ class GitHub
       :code => code
     }
 
-    GitHub.post('/login/oauth/access_token', options)
+    GitHub.post('https://github.com/login/oauth/access_token', options)
   end
 end
