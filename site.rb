@@ -57,12 +57,12 @@ get '/authed' do
     access_token = client.auth_code.get_token(params[:code])
     user = JSON.parse(access_token.get('/user').body)
 
-    p user
     # Pull out the data we care about
     session['user'] = user["login"]
     session['token'] = access_token
 
-    %(<p>Your OAuth access token: #{access_token.token}</p><p>Your extended profile data:\n#{user.inspect}</p>)
+    #%(<p>Your OAuth access token: #{access_token.token}</p><p>Your extended profile data:\n#{user.inspect}</p>)
+    redirect '/sites'
   rescue OAuth2::Error => e
     %(<p>Outdated ?code=#{params[:code]}:</p><p>#{$!}</p><p><a href="/login">Retry</a></p>)
   end
