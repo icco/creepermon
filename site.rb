@@ -77,7 +77,7 @@ end
 
 class Site < Sequel::Model(:sites)
   def Site.getAll username, access_token
-    reponse = client.request(:get, '/user')
+    response = client.request(:get, '/user')
     p response
     all_repos = JSON.parse(response.body)
     sites = Site.find(:user => username)
