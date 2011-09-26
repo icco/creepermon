@@ -1,3 +1,5 @@
-<% sites.each do |site| %>
- <pre><%= site.inspect %></pre>
-<% end %>
+<ul>
+  <% sites.each do |site| %>
+    <li> <%= site.name %>, <%= site.exists? %> </li>
+  <% end %>
+</ul>
