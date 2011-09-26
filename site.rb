@@ -24,10 +24,8 @@ get '/' do
 end
 
 get '/sites' do
-  puts "entering sites with: #{session.inspect}"
   if session["user"] and session["token"]
     sites = Site.getAll(session["user"], session["token"])
-    p sites
     erb :sites, :locals => { "sites" => sites }
   else
     redirect '/'
@@ -78,8 +76,7 @@ end
 
 class Site < Sequel::Model(:sites)
   def Site.getAll username, access_token
-    p client
-    reponse = client.request(:get, '/user/repos')
+    reponse = client.request(:get, '/user')
     p response
     all_repos = JSON.parse(response.body)
     sites = Site.find(:user => username)
