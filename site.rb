@@ -24,8 +24,10 @@ get '/' do
 end
 
 get '/sites' do
+  puts "entering sites with: #{session.inspect}"
   if session["user"] and session["token"]
     sites = Site.getAll(session["user"], session["token"])
+    p sites
     erb :sites, :locals => { "sites" => sites }
   else
     redirect '/'
