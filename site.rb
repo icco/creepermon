@@ -77,11 +77,13 @@ end
 
 class Site < Sequel::Model(:sites)
   def Site.getAll username, access_token
-    response = client.request(:get, '/user')
+    access_token = client.auth_code.get_token(params[:code])
+    response = access_token.get('/user/repos').body
     p response
     all_repos = JSON.parse(response.body)
     sites = Site.find(:user => username)
 
+    p all_repos
     all_repos.each do |repo|
       site = Site.new
       site.project = repo["name"]
