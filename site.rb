@@ -82,6 +82,7 @@ class Site < Sequel::Model(:sites)
     response = access_token.get('/user/repos')
     all_repos = JSON.parse(response.body)
     sites = Site.find(:user => username)
+    sites = [] if site.nil?
 
     all_repos.each do |repo|
       site = Site.new
