@@ -51,7 +51,7 @@ get '/events' do
     response = access_token.get("/users/#{session["user"]}/events")
     all_events = JSON.parse(response.body)
 
-    filtered = all_events.delete_if {|key,event| event.type != "PushEvent" }
+    filtered = all_events.delete_if {|key,event| p event; event['type'] != "PushEvent" }
 
     %(<pre>#{JSON.generate(filtered)}</pre>)
   else
