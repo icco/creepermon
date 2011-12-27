@@ -26,6 +26,8 @@ namespace :db do
 
   desc "Delete the database"
   task :erase do
+    require "sequel"
+
     DB = Sequel.connect(ENV['DATABASE_URL'] || 'sqlite://db/data.db')
     DB.drop_table(:sites)
   end
