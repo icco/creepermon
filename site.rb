@@ -10,7 +10,7 @@ end
 
 configure do
   set :sessions, true
-  DB = Sequel.connect(ENV['DATABASE_URL'] || 'sqlite://data.db')
+  DB = Sequel.connect(ENV['DATABASE_URL'] || 'sqlite://db/data.db')
   GITHUB_CLIENT_ID = ENV['GITHUB_CLIENT_ID']
   GITHUB_CLIENT_SECRET = ENV['GITHUB_CLIENT_SECRET']
 end
