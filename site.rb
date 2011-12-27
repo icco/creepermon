@@ -1,4 +1,4 @@
-# An app for ...
+# An app for creeping.
 # @author Nat Welch - https://github.com/icco
 
 begin
@@ -11,8 +11,8 @@ end
 configure do
   set :sessions, true
   DB = Sequel.connect(ENV['DATABASE_URL'] || 'sqlite://data.db')
-  GITHUB_CLIENT_ID = '27affb525ae9efd596a0'
-  GITHUB_CLIENT_SECRET = 'ca3ce0901ac2a8f1410e6a98efc8d447ba9efa6f'
+  GITHUB_CLIENT_ID = ENV['GITHUB_CLIENT_ID']
+  GITHUB_CLIENT_SECRET = ENV['GITHUB_CLIENT_SECRET']
 end
 
 get '/' do
@@ -77,7 +77,7 @@ get '/style.css' do
 end
 
 class Site < Sequel::Model(:sites)
-  def Site.getAll username, access_token
+  def self.getAll username, access_token
     access_token = OAuth2::AccessToken.new(client, access_token)
     response = access_token.get('/user/repos')
     all_repos = JSON.parse(response.body)
