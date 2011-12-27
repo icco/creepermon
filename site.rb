@@ -1,4 +1,4 @@
-# An app for creeping.
+# An app for creeping on GitHub.
 # @author Nat Welch - https://github.com/icco
 
 begin
@@ -43,7 +43,9 @@ get '/events' do
     response = access_token.get("/users/#{session["user"]}/events")
     all_events = JSON.parse(response.body)
 
-    %(<pre>#{response.body}</pre>)
+    filtered = all_events.reject {|event| event.type != "PushEvent" }
+
+    %(<pre>#{JSON.generate(filtered)}</pre>)
   else
     redirect '/'
   end
