@@ -37,11 +37,16 @@ post '/gitpush' do
 end
 
 get '/events' do
-  access_token = OAuth2::AccessToken.new(client, access_token)
-  response = access_token.get("/users/#{username}/events")
-  all_events = JSON.parse(response.body)
+  if session["user"] and session["token"]
+    access_token = session["token"]
+    access_token = OAuth2::AccessToken.new(client, access_token)
+    response = access_token.get("/users/#{session["user"]}/events")
+    all_events = JSON.parse(response.body)
 
-  %(<pre>#{response}</pre>)
+    %(<pre>#{response}</pre>)
+  else
+    redirect '/'
+  end
 end
 
 ## Oauth Stuff for GitHub
