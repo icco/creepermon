@@ -9,8 +9,16 @@ rescue LoadError
 end
 
 configure do
+  # for enabling nice errors until we launch
+  set :show_exceptions, true
+
+  # Enables cookies and sessions
   set :sessions, true
+
+  # Database connection
   DB = Sequel.connect(ENV['DATABASE_URL'] || 'sqlite://db/data.db')
+
+  # Github OAuth keys.
   GITHUB_CLIENT_ID = ENV['GITHUB_CLIENT_ID']
   GITHUB_CLIENT_SECRET = ENV['GITHUB_CLIENT_SECRET']
 end
