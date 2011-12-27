@@ -43,7 +43,7 @@ get '/events' do
     response = access_token.get("/users/#{session["user"]}/events")
     all_events = JSON.parse(response.body)
 
-    %(<pre>#{response}</pre>)
+    %(<pre>#{response.body}</pre>)
   else
     redirect '/'
   end
