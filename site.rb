@@ -36,6 +36,14 @@ post '/gitpush' do
   p params
 end
 
+get '/events' do
+  access_token = OAuth2::AccessToken.new(client, access_token)
+  response = access_token.get("/users/#{username}/events")
+  all_events = JSON.parse(response.body)
+
+  %(<pre>#{response}</pre>)
+end
+
 ## Oauth Stuff for GitHub
 # Based off of https://gist.github.com/4df21cf628cc3a8f1568 because I'm an idiot...
 def client
@@ -95,3 +103,13 @@ class Site < Sequel::Model(:sites)
     return sites
   end
 end
+
+#class Event < Sequel::Model(:events)
+#  def self.getAll username, access_token
+#    access_token = OAuth2::AccessToken.new(client, access_token)
+#    response = access_token.get("/users/#{username}/events")
+#    all_events = JSON.parse(response.body)
+#
+#    return all_events
+#  end
+#end
