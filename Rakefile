@@ -6,16 +6,17 @@ desc "Create local db."
 task :db do
   require "sequel"
 
-  DB = Sequel.connect(ENV['DATABASE_URL'] || "sqlite://data.db")
+  db_url = ENV['DATABASE_URL'] || "sqlite://db/data.db"
+  migrations_dir = "./db/migrations/"
 
-  DB.create_table! :sites do
-    primary_key :id
-    String :user
-    String :project
-    String :url
-    DateTime :last_check
-    DateTime :create_date
-    DateTime :modify_date
+  puts "Migrating from '#{migrations_dir}' into '#{db_url}'."
+
+  ret = Kernel.system("sequel -m #{migrations_dir} #{db_url}");
+
+  if ret
+    puts "Database migrated."
+  else
+    puts "Database migration failed."
   end
 
   puts "Database built."
