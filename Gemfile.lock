@@ -11,6 +11,7 @@ GEM
   specs:
     addressable (2.2.6)
     builder (3.0.0)
+    chronic (0.6.6)
     commonjs (0.2.0)
       therubyracer (~> 0.9.9)
     excon (0.9.4)
@@ -64,6 +65,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  chronic
   fog
   json
   less

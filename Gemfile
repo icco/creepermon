@@ -1,6 +1,7 @@
 source :rubygems
 
 gem "sinatra"
+gem "chronic"
 gem "less"
 gem "sequel"
 gem "sqlite3", :groups => [:development]

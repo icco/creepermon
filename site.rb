@@ -53,7 +53,19 @@ get '/events' do
 
     filtered = all_events.delete_if { |event| event["type"] != "PushEvent" }
 
-    %(<pre>#{JSON.generate(filtered)}</pre>)
+    filtered.each do |event|
+      user, repo = event["repo"]["name"].split("/")
+      event["payload"]["commits"].each do |commit|
+        ev = Event.new
+        ev.id = commit["sha"]
+        ev.user = user
+        ev.project = repo
+        ev.create_date = Chronic.parse(event["created_at"])
+        ev.save
+      end
+    end
+
+    %(<pre>#{JSON.generate(Event.all)}</pre>)
   else
     redirect '/'
   end
