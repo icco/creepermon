@@ -144,7 +144,7 @@ class Site < Sequel::Model(:sites)
     end
 
     # sort by project name.
-    sites.sort {|a,b| a.project <=> b.project }
+    sites = sites.sort {|a,b| a.project <=> b.project }
 
     return sites
   end
