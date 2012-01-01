@@ -121,7 +121,7 @@ end
 class Site < Sequel::Model(:sites)
   def self.getAll username, access_token
     access_token = OAuth2::AccessToken.new(client, access_token)
-    response = access_token.get('/user/repos')
+    response = access_token.get('/user/repos?per_page=100')
     all_repos = JSON.parse(response.body)
     sites = Site.find(:user => username)
     sites = [] if sites.nil?
@@ -131,6 +131,7 @@ class Site < Sequel::Model(:sites)
       site.project = repo["name"]
       site.user = username
       site.url = repo["homepage"]
+      site.save
       sites.push(site)
     end
 
@@ -138,12 +139,12 @@ class Site < Sequel::Model(:sites)
   end
 end
 
-#class Event < Sequel::Model(:events)
-#  def self.getAll username, access_token
-#    access_token = OAuth2::AccessToken.new(client, access_token)
-#    response = access_token.get("/users/#{username}/events")
-#    all_events = JSON.parse(response.body)
-#
-#    return all_events
-#  end
-#end
+class Event < Sequel::Model(:events)
+  def self.getAll username, access_token
+    access_token = OAuth2::AccessToken.new(client, access_token)
+    response = access_token.get("/users/#{username}/events")
+    all_events = JSON.parse(response.body)
+
+    return all_events
+  end
+end
