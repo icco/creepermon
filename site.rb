@@ -130,6 +130,7 @@ class Site < Sequel::Model(:sites)
 
     all_repos.each do |repo|
       site = Site.find(:project => repo["name"], :user => username)
+      p site
 
       if site.nil?
         site = Site.new
