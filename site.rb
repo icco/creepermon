@@ -125,7 +125,7 @@ class Site < Sequel::Model(:sites)
     access_token = OAuth2::AccessToken.new(client, access_token)
     response = access_token.get('/user/repos?per_page=100')
     all_repos = JSON.parse(response.body)
-    sites = Site.filter(:user => username).all
+    sites = Site.filter(:user => username).all.to_a
     sites = [] if sites.nil?
 
     all_repos.each do |repo|
@@ -142,6 +142,9 @@ class Site < Sequel::Model(:sites)
 
       sites.push(site)
     end
+
+    # sort by project name.
+    sites.sort {|a,b| a.project <=> b.project }
 
     return sites
   end
