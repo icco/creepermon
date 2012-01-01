@@ -50,7 +50,9 @@ get '/events' do
     access_token = OAuth2::AccessToken.new(client, access_token)
     response = access_token.get("/users/#{session["user"]}/events?per_page=100")
     all_events = JSON.parse(response.body)
-    p response.methods
+
+    # "Log" the headers.
+    p response.headers
 
     filtered = all_events.delete_if { |event| event["type"] != "PushEvent" }
 
