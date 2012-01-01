@@ -59,7 +59,7 @@ get '/events' do
     filtered.each do |event|
       user, repo = event["repo"]["name"].split("/")
       event["payload"]["commits"].each do |commit|
-        ev = Event.new
+        ev = Commit.new
         ev.id = commit["sha"]
         ev.user = user
         ev.project = repo
@@ -68,7 +68,7 @@ get '/events' do
       end
     end
 
-    %(<pre>#{JSON.generate(Event.all)}</pre>)
+    %(<pre>#{JSON.generate(Commit.all)}</pre>)
   else
     redirect '/'
   end
@@ -141,7 +141,7 @@ class Site < Sequel::Model(:sites)
   end
 end
 
-class Event < Sequel::Model(:events)
+class Commit < Sequel::Model(:commits)
   def self.getAll username, access_token
     access_token = OAuth2::AccessToken.new(client, access_token)
     response = access_token.get("/users/#{username}/events")
