@@ -48,8 +48,9 @@ get '/events' do
   if session["user"] and session["token"]
     access_token = session["token"]
     access_token = OAuth2::AccessToken.new(client, access_token)
-    response = access_token.get("/users/#{session["user"]}/events")
+    response = access_token.get("/users/#{session["user"]}/events?per_page=100")
     all_events = JSON.parse(response.body)
+    p response.methods
 
     filtered = all_events.delete_if { |event| event["type"] != "PushEvent" }
 
@@ -74,12 +75,18 @@ end
 ## Oauth Stuff for GitHub
 # Based off of https://gist.github.com/4df21cf628cc3a8f1568 because I'm an idiot...
 def client
-  OAuth2::Client.new(GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, {
-    :raise_errors => false,
-    :site => 'https://api.github.com',
-    :authorize_url => 'https://github.com/login/oauth/authorize',
-    :token_url => 'https://github.com/login/oauth/access_token'
-  })
+  if GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET
+    OAuth2::Client.new(GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, {
+      :raise_errors => false,
+      :site => 'https://api.github.com',
+      :authorize_url => 'https://github.com/login/oauth/authorize',
+      :token_url => 'https://github.com/login/oauth/access_token'
+    })
+  else
+    puts "ERROR: CLIENT ID and SECRET not defined"
+
+    return nil
+  end
 end
 
 get '/login' do
