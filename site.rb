@@ -129,11 +129,17 @@ class Site < Sequel::Model(:sites)
     sites = [] if sites.nil?
 
     all_repos.each do |repo|
-      site = Site.new
+      site = Site.find(:project => repo["name"], :user => username)
+
+      if site.nil?
+        site = Site.new
+      end
+
       site.project = repo["name"]
       site.user = username
       site.url = repo["homepage"]
       site.save
+
       sites.push(site)
     end
 

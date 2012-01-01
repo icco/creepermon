@@ -30,5 +30,6 @@ namespace :db do
 
     DB = Sequel.connect(ENV['DATABASE_URL'] || 'sqlite://db/data.db')
     DB.drop_table(:sites)
+    DB.drop_table(:commits)
   end
 end
