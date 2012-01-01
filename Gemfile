@@ -9,4 +9,4 @@ gem "pg", :groups => [:production]
 gem "sequel"
 gem "sinatra"
 gem "sqlite3", :groups => [:development]
-gem "thin"
+gem "rack", "~> 1.3.5"
