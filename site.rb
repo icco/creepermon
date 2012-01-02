@@ -130,7 +130,6 @@ class Site < Sequel::Model(:sites)
 
     all_repos.each do |repo|
       site = Site.find(:project => repo["name"], :user => username)
-      p site
 
       if site.nil?
         site = Site.new
@@ -148,6 +147,18 @@ class Site < Sequel::Model(:sites)
     sites = sites.sort {|a,b| a.project <=> b.project }
 
     return sites
+  end
+
+  def before_create
+    self.create_date = Time.now
+  end
+
+  def before_update
+    if self.create_date.nil?
+      self.create_date = Time.now
+    end
+
+    self.modify_date = Time.now
   end
 end
 
