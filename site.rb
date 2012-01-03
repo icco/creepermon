@@ -82,7 +82,7 @@ get '/commits/more' do
       commits = JSON.parse(response.body)
 
       # "Log" the headers.
-      p response.headers
+      #p response.headers
 
       commits.each do |commit|
         time = nil
