@@ -86,7 +86,12 @@ get '/commits/more' do
       p response.headers
 
       commits.each do |commit|
-        cm = Commit.create(site.user, site.project, commit["sha"], Time.parse(commit["committer"]["date"]))
+        cm = Commit.create(
+          site.user,
+          site.project,
+          commit["sha"],
+          Time.parse(commit["committer"]["date"])
+        )
       end
     end
     erb :commits, :locals => { :commits => Commit.all }
