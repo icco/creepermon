@@ -59,12 +59,7 @@ get '/events' do
     filtered.each do |event|
       user, repo = event["repo"]["name"].split("/")
       event["payload"]["commits"].each do |commit|
-        ev = Commit.new
-        ev.id = commit["sha"]
-        ev.user = user
-        ev.project = repo
-        ev.create_date = Chronic.parse(event["created_at"])
-        ev.save
+        cm = Commit.create(user, repo, commit["sha"], Chronic.parse(event["created_at"]))
       end
     end
 
@@ -169,5 +164,22 @@ class Commit < Sequel::Model(:commits)
     all_events = JSON.parse(response.body)
 
     return all_events
+  end
+
+  def self.create user, repo, sha, date
+    cm = Site.find(
+      :project => repo,
+      :user => user,
+      :sha => sha
+    )
+    cm = Commit.new if cm.nil?
+
+    cm.sha = sha
+    cm.user = user
+    cm.project = repo
+    cm.create_date = date
+    cm.save
+
+    return cm
   end
 end
