@@ -77,18 +77,18 @@ get '/commits/more' do
     access_token = OAuth2::AccessToken.new(client, access_token)
 
     sites.each do |site|
-    response = access_token.get("/repos/#{site.user}/#{site.project}/git/commits/?per_page=100")
-    commits = JSON.parse(response.body)
+      response = access_token.get("/repos/#{site.user}/#{site.project}/git/commits/?per_page=100")
+      commits = JSON.parse(response.body)
 
-    p commits
+      p commits
 
-    # "Log" the headers.
-    p response.headers
+      # "Log" the headers.
+      p response.headers
 
-    commits.each do |commit|
-      cm = Commit.create(site.user, site.project, commit["sha"], Time.parse(commit["committer"]["date"]))
+      commits.each do |commit|
+        cm = Commit.create(site.user, site.project, commit["sha"], Time.parse(commit["committer"]["date"]))
+      end
     end
-
     erb :commits, :locals => { :commits => Commit.all }
   else
     redirect '/login'
