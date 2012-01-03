@@ -86,12 +86,14 @@ get '/commits/more' do
       p response.headers
 
       commits.each do |commit|
-      p commit["committer"]["date"]
+        time = nil
+        time = Time.parse(commit["committer"]["date"]) if !commit["committer"]["date"].nil?
+
         cm = Commit.create(
           site.user,
           site.project,
           commit["sha"],
-          Time.parse(commit["committer"]["date"])
+          time
         )
       end
     end
