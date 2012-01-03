@@ -69,6 +69,7 @@ get '/commits' do
   end
 end
 
+# http://developer.github.com/v3/repos/commits/
 get '/commits/more' do
   if session["user"] and session["token"]
     sites = Site.getAll(session["user"], session["token"])
