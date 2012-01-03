@@ -86,11 +86,8 @@ get '/commits/more' do
       p response.headers
 
       commits.each do |commit|
-        p commit["sha"]
-        p commit["committer"]
-        p commit["author"]
         time = nil
-        time = Time.parse(commit["committer"]["date"]) if !commit["committer"]["date"].nil?
+        time = Time.parse(commit["committer"]["date"]) if !commit["committer"].nil? and !commit["committer"]["date"].nil?
 
         cm = Commit.create(
           site.user,
