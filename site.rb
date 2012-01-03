@@ -36,7 +36,7 @@ get '/sites' do
     sites = Site.getAll(session["user"], session["token"])
     erb :sites, :locals => { "sites" => sites }
   else
-    redirect '/'
+    redirect '/login'
   end
 end
 
