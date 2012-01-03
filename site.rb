@@ -86,6 +86,7 @@ get '/commits/more' do
       p response.headers
 
       commits.each do |commit|
+        p commit["committer"]
         time = nil
         time = Time.parse(commit["committer"]["date"]) if !commit["committer"]["date"].nil?
 
