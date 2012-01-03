@@ -149,7 +149,7 @@ get '/style.css' do
 end
 
 class Site < Sequel::Model(:sites)
-  def sites
+  def commits
     return Commit.filter(:user => self.user, :project => self.project).count
   end
 
