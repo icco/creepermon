@@ -59,8 +59,7 @@ get '/commits' do
     filtered.each do |event|
       user, repo = event["repo"]["name"].split("/")
       event["payload"]["commits"].each do |commit|
-        p event["created_at"], Chronic.parse(event["created_at"])
-        cm = Commit.create(user, repo, commit["sha"], Chronic.parse(event["created_at"]))
+        cm = Commit.create(user, repo, commit["sha"], Time.parse(event["created_at"]))
       end
     end
 
