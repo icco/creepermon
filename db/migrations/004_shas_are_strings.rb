@@ -1,7 +1,7 @@
 Sequel.migration do
   change do
     alter_table :commits do
-      set_column_type :id, String 
+      add_column :sha, String
     end
   end
 end
