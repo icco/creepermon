@@ -69,6 +69,32 @@ get '/commits' do
   end
 end
 
+get '/commits/more' do
+  if session["user"] and session["token"]
+    sites = Site.getAll(session["user"], session["token"])
+
+    access_token = session["token"]
+    access_token = OAuth2::AccessToken.new(client, access_token)
+
+    sites.each do |site|
+    response = access_token.get("/repos/#{site.user}/#{site.project}/git/commits/?per_page=100")
+    commits = JSON.parse(response.body)
+
+    p commits
+
+    # "Log" the headers.
+    p response.headers
+
+    commits.each do |commit|
+      cm = Commit.create(site.user, site.project, commit["sha"], Time.parse(commit["committer"]["date"]))
+    end
+
+    erb :commits, :locals => { :commits => Commit.all }
+  else
+    redirect '/login'
+  end
+end
+
 ## Oauth Stuff for GitHub
 # Based off of https://gist.github.com/4df21cf628cc3a8f1568 because I'm an idiot...
 def client
