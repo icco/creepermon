@@ -2,8 +2,8 @@
   <% sites.each do |site| %>
     <li>
       <%= site.user %>/<%= site.project %>: <%= site.commits %> Commits.
-      <% if site.url %>
-        <li><a href="<%= site.url %>"><%= site.url %></a></li>
+      <% if !site.url.empty? %>
+        <a href="<%= site.url %>"><%= site.url %></a>
       <% end %>
     </li>
   <% end %>
