@@ -44,7 +44,7 @@ post '/gitpush' do
   p params
 end
 
-get '/events' do
+get '/commits' do
   if session["user"] and session["token"]
     access_token = session["token"]
     access_token = OAuth2::AccessToken.new(client, access_token)
@@ -63,9 +63,9 @@ get '/events' do
       end
     end
 
-    %(<pre>#{JSON.generate(Commit.all)}</pre>)
+    erb :commits, :locals => { :commits => Commit.all }
   else
-    redirect '/'
+    redirect '/login'
   end
 end
 
