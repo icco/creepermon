@@ -120,10 +120,11 @@ class Site < Sequel::Model(:sites)
     access_token = OAuth2::AccessToken.new(client, access_token)
     response = access_token.get('/user/repos?per_page=100')
     all_repos = JSON.parse(response.body)
-    sites = Site.filter(:user => username).all.to_a
-    sites = [] if sites.nil?
+    sites = []
 
     all_repos.each do |repo|
+
+      # TODO: sites = Site.filter(:user => username).all.to_a
       site = Site.find(:project => repo["name"], :user => username)
 
       if site.nil?
