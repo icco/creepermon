@@ -20,3 +20,12 @@ Creeper has been many things in my mind, but in reality, it's just me playing wi
  * <http://developer.github.com/v3/events/types/#pushevent>
  * <http://creeper.herokuapp.com/>
  * <http://developer.github.com/v3/repos/commits>
+
+## TODO
+
+ * Figure out why there are no dates on some of the commits
+ * have a background process verify the commits belong to a user
+ * have a background process traverse a commit tree through time
+ * make graphs
+ * start actually pinging sites
+ * force http urls
