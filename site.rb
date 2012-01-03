@@ -168,7 +168,7 @@ class Commit < Sequel::Model(:commits)
   end
 
   def self.create user, repo, sha, date
-    cm = Site.find(
+    cm = Commit.find(
       :project => repo,
       :user => user,
       :sha => sha
