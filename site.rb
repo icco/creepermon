@@ -149,6 +149,22 @@ get '/style.css' do
 end
 
 class Site < Sequel::Model(:sites)
+  def sites
+    return Commit.filter(:user => self.user, :project => self.project).count
+  end
+
+  def before_create
+    self.create_date = Time.now
+  end
+
+  def before_update
+    if self.create_date.nil?
+      self.create_date = Time.now
+    end
+
+    self.modify_date = Time.now
+  end
+
   def self.getAll username, access_token
     access_token = OAuth2::AccessToken.new(client, access_token)
     response = access_token.get('/user/repos?per_page=100')
@@ -176,18 +192,6 @@ class Site < Sequel::Model(:sites)
     sites = sites.sort {|a,b| a.project <=> b.project }
 
     return sites
-  end
-
-  def before_create
-    self.create_date = Time.now
-  end
-
-  def before_update
-    if self.create_date.nil?
-      self.create_date = Time.now
-    end
-
-    self.modify_date = Time.now
   end
 end
 

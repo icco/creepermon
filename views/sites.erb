@@ -1,5 +1,10 @@
 <ul>
   <% sites.each do |site| %>
-    <li><%= site.project %></li>
+    <li>
+      <%= site.user %>/<%= site.project %>: <%= site.commits %> Commits.
+      <% if site.url %>
+        <li><a href="<%= site.url %>"><%= site.url %></a></li>
+      <% end %>
+    </li>
   <% end %>
 </ul>
