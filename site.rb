@@ -78,15 +78,15 @@ get '/commits/more' do
     access_token = OAuth2::AccessToken.new(client, access_token)
 
     sites.each do |site|
+      puts "Querying: /repos/#{site.user}/#{site.project}/commits?per_page=100"
       response = access_token.get("/repos/#{site.user}/#{site.project}/commits?per_page=100")
       commits = JSON.parse(response.body)
-
-      p commits
 
       # "Log" the headers.
       p response.headers
 
       commits.each do |commit|
+      p commit["committer"]["date"]
         cm = Commit.create(
           site.user,
           site.project,
