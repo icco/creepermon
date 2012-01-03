@@ -69,7 +69,6 @@ get '/commits' do
   end
 end
 
-# http://developer.github.com/v3/repos/commits
 get '/commits/more' do
   if session["user"] and session["token"]
     sites = Site.getAll(session["user"], session["token"])
@@ -77,7 +76,7 @@ get '/commits/more' do
     access_token = session["token"]
     access_token = OAuth2::AccessToken.new(client, access_token)
 
-    sites.each do |site|
+    sites.sample(10).each do |site|
       puts "Querying: /repos/#{site.user}/#{site.project}/commits?per_page=100"
       response = access_token.get("/repos/#{site.user}/#{site.project}/commits?per_page=100")
       commits = JSON.parse(response.body)
