@@ -4,13 +4,8 @@ Creeper.controllers  do
     if session[:user].nil? or session[:token].nil?
       redirect "/auth/github"
     else
-      client = Octokit::Client.new({
-        :auto_traversal => true,
-        :login => session[:user],
-        :oauth_token => session[:token],
-      })
-
-      client.repos.inspect
+      @repos = gh_client.repos
+      render :index
     end
   end
 
