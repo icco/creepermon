@@ -58,4 +58,8 @@ class Creeper < Padrino::Application
   #     render 'errors/505'
   #   end
   #
+
+  use OmniAuth::Builder do
+    provider :github, ENV['GITHUB_CLIENT_ID'], ENV['GITHUB_CLIENT_SECRET']
+  end
 end

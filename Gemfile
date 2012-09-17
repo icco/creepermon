@@ -6,6 +6,7 @@ gem "erubis", "~> 2.7.0"
 gem "fog"
 gem "json"
 gem "less"
+gem "omniauth-github"
 gem "padrino"
 gem "pg", :groups => [:production, :development]
 gem "rack-less"
