@@ -1,22 +1,22 @@
 Creeper.controllers  do
-  # get :index, :map => "/foo/bar" do
-  #   session[:foo] = "bar"
-  #   render 'index'
-  # end
 
-  # get :sample, :map => "/sample/url", :provides => [:any, :js] do
-  #   case content_type
-  #     when :js then ...
-  #     else ...
-  # end
+  get :index do
+    if session[:user].nil?
+      redirect '/auth/github'
+    else
+      client = Octokit::Client.new({:auto_traversal => true})
+      p client.repos
+    end
+  end
 
-  # get :foo, :with => :id do
-  #   "Maps to url '/foo/#{params[:id]}'"
-  # end
+  # Github callback
+  get '/auth/github/callback' do
+    auth = request.env['omniauth.auth']
+    auth = auth.info
+    logger.push(" Github: #{auth.inspect}", :devel)
 
-  # get "/example" do
-  #   "Hello world!"
-  # end
+    session[:user] = auth['nickname']
 
-  
+    redirect '/'
+  end
 end
