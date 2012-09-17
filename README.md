@@ -7,13 +7,10 @@ Creeper has been many things in my mind, but in reality, it's just me playing wi
 ## Feature List
 
  * Pings websites every five minutes
-   * TODO
-   * Send out email to user saying "hey! I think your site is down"
- * Provides stats about the logged in user's use of GitHub
-   * TODO
- * Be an intermediary for GitHub post-receive hooks.
-   * Store a list of things to do when GH sends us a hook?
-   * TODO
+   * Log into Github
+   * grabs website list from all projects
+   * pings them all
+   * email on state change
 
 ## Useful links
 
