@@ -1,7 +1,7 @@
 Creeper.controllers  do
 
   get :index do
-    if session[:user].nil?
+    if session[:user].nil? or session[:token].nil?
       redirect "/auth/github"
     else
       client = Octokit::Client.new({
@@ -27,5 +27,10 @@ Creeper.controllers  do
 
   get "/auth/failure" do
     params[:message]
+  end
+
+  get "/logout" do
+    session = {}
+    redirect '/'
   end
 end
