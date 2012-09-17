@@ -19,4 +19,8 @@ Creeper.controllers  do
 
     redirect '/'
   end
+
+  get '/auth/failure' do
+    params[:message]
+  end
 end
