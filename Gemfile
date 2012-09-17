@@ -12,7 +12,7 @@ gem "pg", :groups => [:production, :development]
 gem "rack-less"
 gem "rack-test", :require => "rack/test", :group => "test"
 gem "rake"
-gem "rspec", :group => "test"
+gem "rspec"
 gem "sinatra"
 gem "sinatra-flash", :require => "sinatra/flash"
 gem "therubyracer"
