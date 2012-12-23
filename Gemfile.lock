@@ -19,11 +19,15 @@ GEM
     commonjs (0.2.6)
     diff-lcs (1.1.3)
     erubis (2.7.0)
+    ethon (0.5.7)
+      ffi (~> 1.2.0)
+      mime-types (~> 1.18)
     excon (0.16.10)
     faraday (0.8.4)
       multipart-post (~> 1.1)
     faraday_middleware (0.9.0)
       faraday (>= 0.7.4, < 0.9)
+    ffi (1.2.0)
     fog (1.8.0)
       builder
       excon (~> 0.14)
@@ -142,6 +146,8 @@ GEM
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
+    typhoeus (0.5.3)
+      ethon (~> 0.5.3)
     tzinfo (0.3.35)
     url_mount (0.2.1)
       rack
@@ -168,3 +174,4 @@ DEPENDENCIES
   sinatra
   sinatra-flash
   therubyracer
+  typhoeus
