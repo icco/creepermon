@@ -6,6 +6,7 @@ class Creeper < Padrino::Application
   register Padrino::Helpers
 
   enable :sessions
+
   use OmniAuth::Builder do
     provider :github, ENV['GITHUB_CLIENT_ID'], ENV['GITHUB_CLIENT_SECRET'], scope: "user,repo"
   end

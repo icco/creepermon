@@ -1,7 +1,8 @@
-# Define our connections
+##
+# Database config for relational db.
 connections = {
   :development => "postgres://localhost/creeper",
-  :test => "postgres://localhost/creeper_test",
+  :test => "postgres://postgres@localhost/creeper_test",
   :production => ENV['DATABASE_URL']
 }
 
