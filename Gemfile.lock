@@ -165,6 +165,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
+  activesupport
   chronic
   erubis (~> 2.7.0)
   fog

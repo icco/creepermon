@@ -1,6 +1,7 @@
 source :rubygems
 
 gem "activerecord", :require => "active_record"
+gem "activesupport", :require => "active_support/all"
 gem "chronic"
 gem "erubis", "~> 2.7.0"
 gem "fog"
