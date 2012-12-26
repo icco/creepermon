@@ -1,6 +1,8 @@
 Creeper.controllers  do
 
   get :index do
+    layout :main
+
     if session[:user].nil? or session[:token].nil?
       redirect "/auth/github"
     else

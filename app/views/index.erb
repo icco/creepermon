@@ -1,19 +1,5 @@
-<!doctype html>
-<html>
-  <head>
-    <title>Creeper</title>
-
-    <!-- Bootstrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
-  </head>
-  <body>
-    <ul>
-      <% @repos.each do |repo| %>
-        <li><a href="<%= repo.html_url %>"><%= repo.name %></a> : <%= repo.homepage %></li>
-      <% end %>
-    </ul>
-
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-  </body>
-</html>
+<ul>
+  <% @repos.each do |repo| %>
+    <li><a href="<%= repo.html_url %>"><%= repo.name %></a> : <%= repo.homepage %></li>
+  <% end %>
+</ul>
