@@ -2,7 +2,7 @@
 # Database config for relational db.
 connections = {
   :development => "postgres://localhost/creeper",
-  :test => "postgres://postgres@localhost/creeper_test",
+  :test => "postgres://localhost/creeper_test",
   :production => ENV['DATABASE_URL']
 }
 
@@ -40,6 +40,7 @@ if connections[Padrino.env]
     options[:database] = url.host + url.path
   when "postgres"
     options[:adapter] = "postgresql"
+    options[:user] = 'postgres' if ENV['TRAVIS'] == true
   end
 
   # Log what we are connecting to.

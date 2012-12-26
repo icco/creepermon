@@ -3,5 +3,10 @@ rvm:
   - 1.9.3
 before_script:
   - psql -c 'create database creeper_test;' -U postgres
+  - rake ar:migrate
 services:
-  - postgres
+  - postgresql
+notifications:
+  email:
+    on_success: change
+    on_failure: change
