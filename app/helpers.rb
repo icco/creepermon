@@ -11,7 +11,8 @@ Creeper.helpers do
 
   def get_repos
    begin
-     return gh_client.repos
+     repos = gh_client.repos
+     return repos.delete_if {|repo| repo.homepage.nil? }
    rescue Octokit::Unauthorized
      logger.push("Caught Octokit::Unauthorized for #{session.inspect}", :info)
      return []
