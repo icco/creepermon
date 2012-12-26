@@ -1,7 +1,7 @@
 Creeper.controllers  do
+  layout :main
 
   get :index do
-    layout :main
 
     if session[:user].nil?
       render :login
@@ -42,8 +42,12 @@ Creeper.controllers  do
     params[:message]
   end
 
-  get "/logout" do
-    session = {}
+  get :logout do
+    if session
+      session[:user] = nil
+      session[:token] = nil
+    end
+
     redirect '/'
   end
 end
