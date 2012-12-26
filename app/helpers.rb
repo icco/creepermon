@@ -8,4 +8,13 @@ Creeper.helpers do
       :oauth_token => session[:token],
     })
   end
+
+  def get_repos
+   begin
+     return gh_client.repos
+   rescue Octokit::Unauthorized
+     logger.push("Caught Octokit::Unauthorized for #{session.inspect}", :info)
+     return []
+   end
+  end
 end

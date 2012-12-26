@@ -6,7 +6,7 @@ Creeper.controllers  do
     if session[:user].nil?
       render :login
     else
-      @repos = gh_client.repos
+      @repos = get_repos
       render :index
     end
   end
