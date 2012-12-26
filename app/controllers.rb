@@ -3,12 +3,17 @@ Creeper.controllers  do
   get :index do
     layout :main
 
-    if session[:user].nil? or session[:token].nil?
-      redirect "/auth/github"
+    if session[:user].nil?
+      render :login
     else
       @repos = gh_client.repos
       render :index
     end
+  end
+
+  get :login do
+    provider = Padrino.env == :development ? "developer" : "github"
+    redirect "/auth/#{provider}"
   end
 
   # Github callback
@@ -18,6 +23,17 @@ Creeper.controllers  do
 
     session[:user] = auth["info"]["nickname"]
     session[:token] = auth["credentials"]["token"]
+
+    redirect "/"
+  end
+
+  # Developer callback
+  post "/auth/developer/callback" do
+    auth = request.env["omniauth.auth"]
+    logger.push(" Devel: #{auth.inspect}", :devel)
+
+    session[:user] = auth["info"]["nickname"]
+    session[:token] = nil
 
     redirect "/"
   end
