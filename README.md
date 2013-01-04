@@ -17,3 +17,4 @@ Creeper has been many things in my mind, but in reality, it's just me playing wi
  * <http://developer.github.com/v3/events/types/#pushevent>
  * <http://creeper.herokuapp.com/>
  * <http://developer.github.com/v3/repos/commits>
+ * <https://github.com/typhoeus/typhoeus>
