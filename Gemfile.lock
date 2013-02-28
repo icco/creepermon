@@ -23,7 +23,7 @@ GEM
     ethon (0.5.9)
       ffi (~> 1.2.0)
       mime-types (~> 1.18)
-    eventmachine (1.0.0)
+    eventmachine (1.0.1)
     excon (0.19.1)
     faraday (0.8.6)
       multipart-post (~> 1.1)
