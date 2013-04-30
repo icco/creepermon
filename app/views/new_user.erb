@@ -1,7 +1,13 @@
-<% form_tag '/', :method => 'post' do %>
+<p>
+Creeper works by hitting a URL that lists all of the domains a user wants to monitor.
+</p>
+<p>
+You currently do not have a url set.
+</p>
+
+<% form_tag '/', :method => 'post', :class => "form-inline" do %>
   <fieldset>
-    <%= label_tag :target, :class => 'first' %>
-    <%= text_field_tag :target %>
-    <%= submit_tag "Submit", :class => 'btn' %>
+    <%= text_field_tag :target, :placeholder => 'url of domain list.' %>
+    <button type="submit" class="btn">Submit</button>
   </fieldset>
 <% end %>
