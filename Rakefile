@@ -4,6 +4,7 @@ PadrinoTasks.use(:database)
 PadrinoTasks.use(:activerecord)
 PadrinoTasks.init
 
+task :default => :test
 
 desc "Run a local server."
 task :local do
