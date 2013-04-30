@@ -7,10 +7,8 @@ Creeper has been many things in my mind, but in reality, it's just me playing wi
 ## Feature List
 
  * Pings websites every five minutes
-   * Log into Github
-   * grabs website list from all projects
-   * pings them all
-   * email on state change
+ * Checks to make sure analytics are installed
+ * records ping
 
 ## Useful links
 
