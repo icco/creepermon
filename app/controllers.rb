@@ -6,7 +6,23 @@ Creeper::App.controllers  do
       render :login
     else
       @user = User.factory session[:user]
-      render :index
+      if @user.target
+        render :index
+      else
+        render :new_user
+      end
+    end
+  end
+
+  post :index do
+    if session[:user].nil?
+      redirect :login
+    else
+      @user = User.factory session[:user]
+      @user.target = params[:target]
+      @user.save
+
+      redirect '/'
     end
   end
 
