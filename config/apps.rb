@@ -28,9 +28,8 @@
 Padrino.configure_apps do
   set :protection, true
   set :protect_from_csrf, true
+  set :session_secret, ENV['SESSION_SECRET'] || '547349fb4 BRO!!!!.'
 end
 
 # Mounts the core application for this project
 Padrino.mount('Creeper::App', :app_file => Padrino.root('app/app.rb')).to('/')
-  set :session_secret, ENV['SESSION_SECRET'] || '547349fb4 BRO!!!!.'
-end
