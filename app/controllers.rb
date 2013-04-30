@@ -47,10 +47,14 @@ Creeper::App.controllers  do
     auth = request.env["omniauth.auth"]
     logger.push(" Devel: #{auth.inspect}", :devel)
 
-    session[:user] = auth["info"]["nickname"]
-    session[:token] = nil
+    if !auth["info"]["nickname"].empty?
+      session[:user] = auth["info"]["nickname"]
+      session[:token] = nil
 
-    redirect "/"
+      redirect "/"
+    else
+      redirect :logout
+    end
   end
 
   get "/auth/failure" do
