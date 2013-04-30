@@ -26,11 +26,11 @@
 # override these settings in the subapps as needed.
 #
 Padrino.configure_apps do
-  # enable :sessions
-  set :session_secret, '2dc7a6f99d2660574fd3b8e52229a6c5f6efc4604ad37e20260a3ea6140db878'
   set :protection, true
   set :protect_from_csrf, true
 end
 
 # Mounts the core application for this project
 Padrino.mount('Creeper::App', :app_file => Padrino.root('app/app.rb')).to('/')
+  set :session_secret, ENV['SESSION_SECRET'] || '547349fb4 BRO!!!!.'
+end

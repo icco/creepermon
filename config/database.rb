@@ -54,6 +54,7 @@ if connections[Padrino.env]
     options[:database] = url.host + url.path
   when "postgres"
     options[:adapter] = "postgresql"
+    options[:user] = 'postgres' if ENV['TRAVIS'] == true
   end
 
   # Log what we are connecting to.

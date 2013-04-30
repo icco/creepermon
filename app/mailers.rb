@@ -32,7 +32,6 @@
 #
 # and then all delivered mail will use these settings unless otherwise specified.
 #
-
 Creeper::App.mailer :notifier do
   # Message definitions here...
 end
