@@ -2,11 +2,10 @@ Creeper::App.controllers  do
   layout :main
 
   get :index do
-
     if session[:user].nil?
       render :login
     else
-      @repos = get_repos
+      @user = User.factory session[:user]
       render :index
     end
   end
