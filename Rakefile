@@ -1,5 +1,7 @@
 require 'padrino-core/cli/rake'
 
+require File.expand_path('../config/boot.rb', __FILE__)
+
 PadrinoTasks.use(:database)
 PadrinoTasks.use(:activerecord)
 PadrinoTasks.init
@@ -14,6 +16,6 @@ end
 desc "Pings all of the sites."
 task :cron do
   Ping.select(:site).uniq.each do |s|
-    Ping.factory s
+    Ping.factory s.site
   end
 end

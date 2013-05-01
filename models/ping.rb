@@ -20,7 +20,7 @@ class Ping < ActiveRecord::Base
 
     i = Ping.new
     i.site = url
-    i.code = response
+    i.code = response.code
     i.time = end_time
     i.save
     
