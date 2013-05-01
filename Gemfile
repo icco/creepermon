@@ -19,7 +19,7 @@ gem 'sass'
 gem 'sinatra'
 gem 'sinatra-flash', :require => 'sinatra/flash'
 gem 'thin'
-gem 'typhoeus'
+gem 'validate_url'
 
 # For dev
 group :development do
