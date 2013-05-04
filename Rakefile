@@ -15,7 +15,7 @@ end
 
 desc "Pings all of the sites."
 task :cron do
-  Ping.select(:site).uniq.each do |s|
-    Ping.factory s.site
+  User.all.each do |user|
+    user.sites.each {|s| Ping.factory(s) }
   end
 end

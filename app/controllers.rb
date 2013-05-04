@@ -7,7 +7,6 @@ Creeper::App.controllers  do
     else
       @user = User.factory session[:user]
       if @user.target
-        @user.sites.each {|s| Ping.factory(s) }
         render :index
       else
         render :new_user
