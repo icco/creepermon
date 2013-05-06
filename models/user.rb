@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 
   def sites
     require 'open-uri'
-    open(self.target).readlines.map {|s| s.strip }
+    open(self.target).readlines.map {|s| Site.new s.strip }
   end
 
   def self.factory name
