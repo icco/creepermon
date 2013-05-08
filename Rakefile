@@ -16,6 +16,6 @@ end
 desc "Pings all of the sites."
 task :cron do
   User.all.each do |user|
-    user.sites.each {|s| Ping.factory(s) }
+    user.sites.each {|s| Ping.factory(s.url) }
   end
 end
