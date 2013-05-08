@@ -14,6 +14,13 @@ Creeper::App.controllers  do
     end
   end
 
+  get '/data/:site.json' do
+    data = Ping.where("site like ?", "%#{params[:site]}%").order("created_at DESC")
+
+    content_type :json
+    data.to_a.to_json
+  end
+
   post :index do
     if session[:user].nil?
       redirect :login
