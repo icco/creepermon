@@ -15,7 +15,7 @@ Creeper::App.controllers  do
   end
 
   get '/data/:site.json' do
-    data = Ping.where("site like ?", "%#{params[:site]}%").order("created_at DESC")
+    data = Ping.where("site like ?", "%#{params[:site]}%").order("created_at DESC").limit(100)
 
     content_type :json
     data.to_a.to_json
