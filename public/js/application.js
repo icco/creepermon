@@ -1,13 +1,9 @@
 (function() {
-  var margin = {top: 20, right: 10, bottom: 20, left: 10};
-  var width = 960 - margin.left - margin.right;
-  var height = 500 - margin.top - margin.bottom;
+  var margin = {top: 20, right: 20, bottom: 30, left: 60},
+      width = 960 - margin.left - margin.right,
+      height = 200 - margin.top - margin.bottom;
 
   d3.selectAll('.graph').each(function() {
-    var margin = {top: 20, right: 20, bottom: 30, left: 50},
-        width = 960 - margin.left - margin.right,
-        height = 300 - margin.top - margin.bottom;
-
     var x = d3.time.scale()
         .range([0, width]);
 
@@ -20,6 +16,7 @@
 
     var yAxis = d3.svg.axis()
         .scale(y)
+        .tics(10)
         .orient("left");
 
     var area = d3.svg.area()
@@ -35,10 +32,8 @@
 
     d3.json("/data/" + this.dataset.url + ".json", function(error, data) {
       data.forEach(function(d) {
-        d.date = moment(d.date).toDate();
+        d.date = moment(d.date);
       });
-
-
 
       x.domain(d3.extent(data, function(d) { return d.date; }));
       y.domain([0, d3.max(data, function(d) { return d.time; })]);
