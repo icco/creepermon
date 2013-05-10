@@ -2,8 +2,9 @@
   <% @user.sites.each do |s| %>
     <li><a href="<%= s.url %>"><%= s.url %></a>
     <ul>
-      <li>Most recent fail: <%= s.most_recent_fail.created_at if s.most_recent_fail%></li>
+      <li>Most recent fail: <%= s.most_recent_fail.created_at if s.most_recent_fail %></li>
       <li>Most recent 200: <%= s.most_recent_success.created_at if s.most_recent_success %></li>
+      <div data-url="<%= s.url %>" class="graph"></div>
     </ul>
     </li>
   <% end %>
