@@ -6,7 +6,7 @@
   d3.selectAll('.graph').each(function() {
     var margin = {top: 20, right: 20, bottom: 30, left: 50},
         width = 960 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
+        height = 300 - margin.top - margin.bottom;
 
     var x = d3.time.scale()
         .range([0, width]);
@@ -35,8 +35,10 @@
 
     d3.json("/data/" + this.dataset.url + ".json", function(error, data) {
       data.forEach(function(d) {
-        d.date = moment(d.date);
+        d.date = moment(d.date).toDate();
       });
+
+
 
       x.domain(d3.extent(data, function(d) { return d.date; }));
       y.domain([0, d3.max(data, function(d) { return d.time; })]);
