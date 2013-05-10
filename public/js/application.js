@@ -16,7 +16,7 @@
 
     var yAxis = d3.svg.axis()
         .scale(y)
-        .tics(10)
+        .ticks(10)
         .orient("left");
 
     var area = d3.svg.area()
