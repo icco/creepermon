@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Project requirements
-gem 'activerecord', :require => 'active_record'
+gem 'activerecord', '~> 3.0', :require => 'active_record'
 gem 'activesupport', :require => 'active_support/all'
 gem 'chronic'
 gem 'erubis', '~> 2.7.0'
