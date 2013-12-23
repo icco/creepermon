@@ -11,6 +11,17 @@
     <![endif]-->
   </head>
   <body>
-    <%= yield %>
+    <div class="container" role="main">
+      <div class="grid">
+        <header class="unit span-grid" role="banner">
+        <h1 class="site-title">Creeper</h1>
+        <h2 class="site-tagline">A Deployment Tool</h2>
+        </header>
+        <hr class="unit span-grid">
+
+        <%= yield %>
+
+      </div>
+    </div>
   </body>
 </html>
