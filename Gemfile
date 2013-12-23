@@ -1,24 +1,22 @@
 source 'https://rubygems.org'
 
-# Server requirements
-gem 'thin' # or mongrel
-
-# Optional JSON codec (faster performance)
-gem 'oj'
-
-# Project requirements
-gem 'rake'
-
-# Component requirements
-gem 'sass'
-gem 'erubis', '~> 2.7.0'
+# Stuff we always need
 gem 'activerecord', '>= 3.1', :require => 'active_record'
-gem 'pg'
-
-# Test requirements
-gem 'rr', :group => 'test'
-gem 'minitest', '~>2.6.0', :require => 'minitest/autorun', :group => 'test'
-gem 'rack-test', :require => 'rack/test', :group => 'test'
-
-# Padrino Edge
+gem 'erubis', '~> 2.7.0'
+gem 'json'
+gem 'oj'
 gem 'padrino', :github => 'padrino/padrino-framework'
+gem 'pg'
+gem 'rake'
+gem 'sass'
+gem 'thin'
+
+group :test do
+  gem 'minitest', '~>2.6.0', :require => 'minitest/autorun'
+  gem 'rack-test', :require => 'rack/test'
+  gem 'rr'
+end
+
+group :development do
+  gem 'shotgun'
+end

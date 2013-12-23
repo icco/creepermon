@@ -1,7 +1,13 @@
-# Helper methods defined here can be accessed in any controller or view in the application
-
-CreeperMon::App.helpers do
-  # def simple_helper_method
-  #  ...
-  # end
+module CreeperMon
+  module Helpers
+    def title
+      if !@title.nil? && !@title.empty?
+        "| #{@title}"
+      else
+        ""
+      end
+    end
+  end
 end
+
+CreeperMon::App.helpers CreeperMon::Helpers
