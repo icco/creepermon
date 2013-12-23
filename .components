@@ -5,5 +5,5 @@
 :script: jquery
 :renderer: erb
 :stylesheet: sass
-:namespace: Creeper
+:namespace: CreeperMon
 :migration_format: number
