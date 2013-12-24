@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/icco/padrino-framework.git
-  revision: 3cedda7645b0c7ba0ce8270c68ce361b0c7b8ddd
+  revision: 4a61c95602ccad73bbd0ff04c875e11468bae056
   branch: asset_settings
   specs:
     padrino (0.12.0.rc)
