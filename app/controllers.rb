@@ -6,6 +6,7 @@ CreeperMon::App.controllers  do
   end
 
   get :login do
+    @title = "Login!"
     render :login
   end
 
@@ -18,6 +19,7 @@ CreeperMon::App.controllers  do
   end
 
   get :home do
+    @title = "Home"
     render :home
   end
 end
