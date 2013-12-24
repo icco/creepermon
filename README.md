@@ -36,3 +36,8 @@ Existing User has two flows
  5. CM installs the sites as defined in the config.
  6. CM Updates DNS for sites so they point to new server.
  7. CM takes snapshot and deletes old instance.
+
+## Components used
+
+ * https://daneden.me/toast/
+ * http://purecss.io/
