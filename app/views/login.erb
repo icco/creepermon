@@ -1,7 +1,57 @@
-<div class="unit span-grid">
-  Log in or signup!
+<% content_for :assets do %>
+  <%= stylesheet_link_tag 'http://yui.yahooapis.com/pure/0.3.0/buttons-min.css' %>
+  <%= stylesheet_link_tag 'http://yui.yahooapis.com/pure/0.3.0/forms-min.css' %>
+<% end %>
+
+<div class="unit one-of-two">
+  <% form_tag '/login', :class => 'pure-form pure-form-aligned', :method => 'post' do %>
+    <h2>Login</h2>
+
+    <%= flash_tag %>
+
+    <fieldset>
+      <div class="pure-control-group">
+        <%= label_tag :username %>
+        <%= text_field_tag :username, :value => params[:username] %>
+      </div>
+
+      <div class="pure-control-group">
+        <%= label_tag :password %>
+        <%= password_field_tag :password %>
+      </div>
+
+      <div class="pure-controls">
+        <%= submit_tag 'Submit', :class => 'pure-button pure-button-primary' %>
+      </div>
+    </fieldset>
+  <% end %>
 </div>
 
 <div class="unit one-of-two">
+  <% form_tag '/signup', :class => 'pure-form pure-form-aligned', :method => 'post' do %>
+    <h2>Sign up</h2>
 
+    <%= flash_tag %>
+
+    <fieldset>
+      <div class="pure-control-group">
+        <%= label_tag :username %>
+        <%= text_field_tag :username, :value => params[:username] %>
+      </div>
+
+      <div class="pure-control-group">
+        <%= label_tag :password %>
+        <%= password_field_tag :password %>
+      </div>
+
+      <div class="pure-control-group">
+        <%= label_tag :confirm_password %>
+        <%= password_field_tag :confirm_password %>
+      </div>
+
+      <div class="pure-controls">
+        <%= submit_tag 'Submit', :class => 'pure-button pure-button-primary' %>
+      </div>
+    </fieldset>
+  <% end %>
 </div>
