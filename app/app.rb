@@ -31,9 +31,9 @@ module CreeperMon
     ##
     # Application configuration options.
     #
-    set :logging, true            # Logging in STDOUT for development and file for production (default only for development)
-    set :javascript_dir, 'js'
-    set :css_dir, 'css'
+    set :logging, true
+    set :js_asset_folder, 'js'
+    set :css_asset_folder, 'css'
 
     ##
     # You can configure for a specified environment like:
