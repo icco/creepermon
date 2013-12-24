@@ -9,6 +9,7 @@ gem 'padrino', :github => 'icco/padrino-framework', :branch => 'asset_settings'
 gem 'pg'
 gem 'rake'
 gem 'sass'
+gem 'sinatra-assetpack', :require => 'sinatra/assetpack'
 gem 'thin'
 
 group :test do
