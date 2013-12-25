@@ -1,24 +1,14 @@
 <div class="unit one-of-two">
-  <% form_tag '/login', :class => 'pure-form pure-form-aligned', :method => 'post' do %>
+  <% form_tag '/login', :class => 'pure-form', :method => 'post' do %>
     <h2>Login</h2>
 
     <%= flash_tag %>
 
-    <fieldset>
-      <div class="pure-control-group">
-        <%= label_tag :username %>
-        <%= text_field_tag :username, :value => params[:username] %>
-      </div>
-
-      <div class="pure-control-group">
-        <%= label_tag :password %>
-        <%= password_field_tag :password %>
-      </div>
-
-      <div class="pure-controls">
-        <%= submit_tag 'Submit', :class => 'pure-button pure-button-primary submit-button' %>
-      </div>
-    </fieldset>
+    <div class="large-input">
+      <%= text_field_tag :username, :value => params[:username], :placeholder => "Username" %>
+      <%= password_field_tag :password, :placeholder => "Password" %>
+      <%= submit_tag 'Submit', :class => 'pure-button pure-button-primary submit-button' %>
+    </div>
   <% end %>
 </div>
 
@@ -28,25 +18,11 @@
 
     <%= flash_tag %>
 
-    <fieldset>
-      <div class="pure-control-group">
-        <%= label_tag :username %>
-        <%= text_field_tag :username, :value => params[:username] %>
-      </div>
-
-      <div class="pure-control-group">
-        <%= label_tag :password %>
-        <%= password_field_tag :password %>
-      </div>
-
-      <div class="pure-control-group">
-        <%= label_tag :confirm_password %>
-        <%= password_field_tag :confirm_password %>
-      </div>
-
-      <div class="pure-controls">
-        <%= submit_tag 'Submit', :class => 'pure-button pure-button-primary submit-button' %>
-      </div>
-    </fieldset>
+    <div class="large-input">
+      <%= text_field_tag :username, :value => params[:username], :placeholder => "Username" %>
+      <%= password_field_tag :password, :placeholder => "Password" %>
+      <%= password_field_tag :confirm_password, :placeholder => "Confirm Password" %>
+      <%= submit_tag 'Submit', :class => 'pure-button pure-button-primary submit-button' %>
+    </div>
   <% end %>
 </div>
