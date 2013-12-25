@@ -10,11 +10,11 @@ module CreeperMon
     #
     register Padrino::Pipeline
     configure_assets do |config|
-      config.pipeline = Padrino::Pipeline::AssetPack
+      config.pipeline = Padrino::Pipeline::Sprockets
       config.css_prefix = '/css'
-      config.css_assets = '/app/css'
+      config.css_assets = Padrino.root('app', 'css')
       config.js_prefix = '/js'
-      config.js_assets = '/app/js'
+      config.js_assets = Padrino.root('app', 'js')
     end
 
     ##
@@ -33,21 +33,13 @@ module CreeperMon
     # Application configuration options.
     #
     set :logging, true
-    set :js_asset_folder, 'js'
-    set :css_asset_folder, 'css'
+    #set :js_asset_folder, 'js'
+    #set :css_asset_folder, 'css'
 
     ##
     # You can configure for a specified environment like:
     #
     configure :development do
-    end
-
-    error 404 do
-      render 'errors/404'
-    end
-
-    error 505 do
-      render 'errors/505'
     end
   end
 end

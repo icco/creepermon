@@ -134,6 +134,7 @@ DEPENDENCIES
   activerecord (>= 3.1)
   erubis (~> 2.7.0)
   json
+  mail
   minitest (~> 2.6.0)
   oj
   padrino!
