@@ -12,6 +12,7 @@ module CreeperMon
     configure_assets do |config|
       config.pipeline = Padrino::Pipeline::Sprockets
       config.compiled_output = Padrino.root('public')
+      config.enable_compression = true
 
       config.css_prefix = '/css'
       config.css_assets = Padrino.root('app', 'css')

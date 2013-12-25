@@ -1,6 +1,7 @@
 GIT
-  remote: git://github.com/Ortuna/padrino-pipeline.git
-  revision: ea80037f93cd529b67f812a07529d13d3c44bcc9
+  remote: git://github.com/icco/padrino-pipeline.git
+  revision: 0f5db347b0cd4c130ef225ec8ce1abe7c5e5a88a
+  branch: rake_clean
   specs:
     padrino-pipeline (0.3.0)
       coffee-script (~> 2.2.0)
