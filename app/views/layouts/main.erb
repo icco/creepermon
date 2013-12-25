@@ -5,9 +5,7 @@
     <title>CreeperMon <%= title %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <%= stylesheet_link_tag 'application' %>
-
-    <%= yield_content :assets %>
+    <%= css :app, :media => 'screen' %>
 
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -26,5 +24,7 @@
         <%= yield %>
       </div>
     </div>
+
+    <%= js  :app %>
   </body>
 </html>

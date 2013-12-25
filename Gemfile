@@ -9,8 +9,9 @@ gem 'padrino', :github => 'icco/padrino-framework', :branch => 'asset_settings'
 gem 'pg'
 gem 'rake'
 gem 'sass'
-gem 'sinatra-assetpack', :require => 'sinatra/assetpack'
+gem 'sinatra-assetpack', :require => 'sinatra/assetpack', :github => 'rstacruz/sinatra-assetpack'
 gem 'thin'
+gem 'uglifier'
 
 group :test do
   gem 'minitest', '~>2.6.0', :require => 'minitest/autorun'
