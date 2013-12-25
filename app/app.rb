@@ -5,7 +5,6 @@ module CreeperMon
     register Padrino::Mailer
     register Padrino::Helpers
 
-
     ##
     # Asset Compilation
     #

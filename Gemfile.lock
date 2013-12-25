@@ -1,7 +1,19 @@
 GIT
-  remote: git://github.com/icco/padrino-framework.git
-  revision: 4a61c95602ccad73bbd0ff04c875e11468bae056
-  branch: asset_settings
+  remote: git://github.com/Ortuna/padrino-pipeline.git
+  revision: ea80037f93cd529b67f812a07529d13d3c44bcc9
+  specs:
+    padrino-pipeline (0.3.0)
+      coffee-script (~> 2.2.0)
+      padrino-core (~> 0.11)
+      padrino-helpers (~> 0.11)
+      sass (~> 3.2.0)
+      sinatra-assetpack (~> 0.3)
+      sprockets (~> 2.10)
+      uglifier (~> 2.1.0)
+
+GIT
+  remote: git://github.com/padrino/padrino-framework.git
+  revision: f4587064b8e0472292c4803d2c43dae2a033a98d
   specs:
     padrino (0.12.0.rc)
       padrino-admin (= 0.12.0.rc)
@@ -33,20 +45,6 @@ GIT
     padrino-mailer (0.12.0.rc)
       mail (~> 2.5.3)
       padrino-core (= 0.12.0.rc)
-
-GIT
-  remote: git://github.com/icco/padrino-pipeline.git
-  revision: 0d47f9d8903a9949e0db2399b6b2187699f2f266
-  branch: patch-1
-  specs:
-    padrino-pipeline (0.3.0)
-      coffee-script (~> 2.2.0)
-      padrino-core (~> 0.11)
-      padrino-helpers (~> 0.11)
-      sass (~> 3.2.0)
-      sinatra-assetpack (~> 0.3)
-      sprockets (~> 2.10)
-      uglifier (~> 2.1.0)
 
 GEM
   remote: https://rubygems.org/
