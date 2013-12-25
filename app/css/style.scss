@@ -1,5 +1,6 @@
 $primary-link-color: #d87a68;
 $primary-text-color: #222222;
+$alt-link-color: #ffffff;
 
 html, body {
   -webkit-font-smoothing: antialiased;
@@ -38,14 +39,17 @@ pre {
 
 .signup-button {
   background-color: $primary-link-color;
-  border-radius: .24rem;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  color: #fff;
+  color: $alt-link-color;
+  padding: 8px 15px;
   display: block;
+}
+
+.submit-button {
+  padding: 8px 55px;
+}
+
+.pure-button {
+  border-radius: .24rem;
   font-size: .75rem;
   line-height: 2;
-  padding: .375rem;
-  padding: 8px 15px;
-  text-align: center;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
