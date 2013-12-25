@@ -11,10 +11,15 @@ module CreeperMon
     register Padrino::Pipeline
     configure_assets do |config|
       config.pipeline = Padrino::Pipeline::Sprockets
+      config.compiled_output = Padrino.root('public')
+
       config.css_prefix = '/css'
       config.css_assets = Padrino.root('app', 'css')
+      config.css_compiled_output = 'css'
+
       config.js_prefix = '/js'
       config.js_assets = Padrino.root('app', 'js')
+      config.js_compiled_output = 'js'
     end
 
     ##
