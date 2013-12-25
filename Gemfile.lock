@@ -35,14 +35,18 @@ GIT
       padrino-core (= 0.12.0.rc)
 
 GIT
-  remote: git://github.com/rstacruz/sinatra-assetpack.git
-  revision: 659e719ae960d2e64464534e460397c17025c92a
+  remote: git://github.com/icco/padrino-pipeline.git
+  revision: 0d47f9d8903a9949e0db2399b6b2187699f2f266
+  branch: patch-1
   specs:
-    sinatra-assetpack (0.3.1)
-      jsmin
-      rack-test
-      sinatra
-      tilt (>= 1.3.0)
+    padrino-pipeline (0.3.0)
+      coffee-script (~> 2.2.0)
+      padrino-core (~> 0.11)
+      padrino-helpers (~> 0.11)
+      sass (~> 3.2.0)
+      sinatra-assetpack (~> 0.3)
+      sprockets (~> 2.10)
+      uglifier (~> 2.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -60,10 +64,15 @@ GEM
       multi_json (~> 1.0)
     arel (3.0.3)
     builder (3.0.4)
+    coffee-script (2.2.0)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.6.3)
     daemons (1.1.9)
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.0.2)
+    hike (1.2.3)
     http_router (0.11.0)
       rack (>= 1.0.0)
       url_mount (~> 0.2.1)
@@ -94,6 +103,16 @@ GEM
       rack (~> 1.4)
       rack-protection (~> 1.4)
       tilt (~> 1.3, >= 1.3.4)
+    sinatra-assetpack (0.3.1)
+      jsmin
+      rack-test
+      sinatra
+      tilt (>= 1.3.0)
+    sprockets (2.10.1)
+      hike (~> 1.2)
+      multi_json (~> 1.0)
+      rack (~> 1.0)
+      tilt (~> 1.1, != 1.3.0)
     thin (1.6.1)
       daemons (>= 1.0.9)
       eventmachine (>= 1.0.0)
@@ -104,9 +123,9 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.38)
-    uglifier (2.4.0)
+    uglifier (2.1.2)
       execjs (>= 0.3.0)
-      json (>= 1.8.0)
+      multi_json (~> 1.0, >= 1.0.2)
     url_mount (0.2.1)
       rack
 
@@ -120,12 +139,13 @@ DEPENDENCIES
   minitest (~> 2.6.0)
   oj
   padrino!
+  padrino-pipeline!
   pg
   rack-test
   rake
   rr
   sass
   shotgun
-  sinatra-assetpack!
+  sinatra-assetpack
   thin
   uglifier
