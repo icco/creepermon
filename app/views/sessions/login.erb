@@ -1,0 +1,13 @@
+<div class="unit one-of-two">
+  <% form_tag url(:sessions, :login), :class => 'pure-form', :method => 'post' do %>
+    <h2>Login</h2>
+
+    <%= flash_tag %>
+
+    <div class="large-input">
+      <%= text_field_tag :name, :value => params[:name], :placeholder => "Username" %>
+      <%= password_field_tag :password, :placeholder => "Password" %>
+      <%= submit_tag 'Submit', :class => 'pure-button pure-button-primary submit-button' %>
+    </div>
+  <% end %>
+</div>

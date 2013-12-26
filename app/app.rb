@@ -22,11 +22,7 @@ module CreeperMon
       config.js_assets = Padrino.root('app', 'js')
       config.js_compiled_output = 'js'
     end
-
-    ##
-    # Sessions
-    #
-    enable :sessions
+    layout :main
 
     ##
     # Caching support.
@@ -45,8 +41,28 @@ module CreeperMon
     ##
     # Auth
     #
-    enable :authentication
-    set :login_page, "/login"
+    register Padrino::Warden
+    enable :store_location
+    enable :sessions
+    Warden::Strategies.add(:password) do
+      def valid?
+        params["email"] || params["password"]
+      end
+
+      def authenticate!
+        u = User.authenticate(params["email"], params["password"])
+        u.nil? ? fail!("Could not log in") : success!(u)
+      end
+    end
+
+    Warden::Manager.serialize_into_session do |user|
+      user.id
+    end
+
+    Warden::Manager.serialize_from_session do |id|
+      User.get(id)
+    end
+    
 
     ##
     # You can configure for a specified environment like:

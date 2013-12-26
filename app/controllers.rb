@@ -1,5 +1,4 @@
 CreeperMon::App.controllers  do
-  layout :main
 
   get :index do
     render :index

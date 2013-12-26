@@ -12,8 +12,15 @@ GIT
       uglifier (~> 2.1.0)
 
 GIT
+  remote: git://github.com/jondot/padrino-warden.git
+  revision: 7aac33ed31a7c98eabae1f5c1dd86321bf6fd4f9
+  specs:
+    padrino-warden (0.1.1)
+      warden (>= 0.10.3)
+
+GIT
   remote: git://github.com/padrino/padrino-framework.git
-  revision: f4587064b8e0472292c4803d2c43dae2a033a98d
+  revision: 0b0db3a66ae9b14cc3cc72be7c81086102c49727
   specs:
     padrino (0.12.0.rc)
       padrino-admin (= 0.12.0.rc)
@@ -126,6 +133,8 @@ GEM
       multi_json (~> 1.0, >= 1.0.2)
     url_mount (0.2.1)
       rack
+    warden (1.2.3)
+      rack (>= 1.0)
 
 PLATFORMS
   ruby
@@ -139,6 +148,7 @@ DEPENDENCIES
   oj
   padrino!
   padrino-pipeline!
+  padrino-warden!
   pg
   rack-test
   rake
