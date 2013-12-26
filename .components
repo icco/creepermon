@@ -7,4 +7,3 @@
 :stylesheet: sass
 :namespace: CreeperMon
 :migration_format: number
-:admin_renderer: erb
