@@ -43,6 +43,12 @@ module CreeperMon
     #set :css_asset_folder, 'css'
 
     ##
+    # Auth
+    #
+    enable :authentication
+    set :login_page, "/login"
+
+    ##
     # You can configure for a specified environment like:
     #
     configure :development do
