@@ -5,7 +5,31 @@ connections = {
   :development => "postgres://localhost/creepermon",
   :test => "postgres://postgres@localhost/creepermon_test",
   :production => ENV['DATABASE_URL']
-}
+}.delete_if {|k, v| v.nil? }
+
+connections.each do |k, v|
+  # ActiveRecord doesn't parse all DB URIs correctly.
+  url = URI(v)
+  options = {
+    :adapter => url.scheme,
+    :host => url.host,
+    :port => url.port,
+    :database => url.path[1..-1],
+    :username => url.user,
+    :password => url.password
+  }
+
+  # Translate URIs if ActiveRecord does weird things
+  case url.scheme
+  when "sqlite"
+    options[:adapter] = "sqlite3"
+    options[:database] = url.host + url.path
+  when "postgres"
+    options[:adapter] = "postgresql"
+  end
+  connections[k] = options
+end
+ActiveRecord::Base.configurations = connections
 
 # Setup our logger
 ActiveRecord::Base.logger = logger
@@ -33,26 +57,8 @@ ActiveSupport.use_standard_json_time_format = true
 ActiveSupport.escape_html_entities_in_json = false
 
 # Now we can estabilish connection with our db
-if connections[Padrino.env]
-  # ActiveRecord doesn't parse all DB URIs correctly.
-  url = URI(connections[Padrino.env])
-  options = {
-    :adapter => url.scheme,
-    :host => url.host,
-    :port => url.port,
-    :database => url.path[1..-1],
-    :username => url.user,
-    :password => url.password
-  }
-
-  # Translate URIs if ActiveRecord does weird things
-  case url.scheme
-  when "sqlite"
-    options[:adapter] = "sqlite3"
-    options[:database] = url.host + url.path
-  when "postgres"
-    options[:adapter] = "postgresql"
-  end
+if ActiveRecord::Base.configurations[Padrino.env]
+  options = ActiveRecord::Base.configurations[Padrino.env]
 
   # Log what we are connecting to.
   logger.bench "DB", init, "#{options.inspect}", :devel, :green
