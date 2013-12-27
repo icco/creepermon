@@ -44,7 +44,7 @@ module CreeperMon
     register Padrino::Warden
     enable :store_location
     enable :sessions
-    Warden::Strategies.add(:bcrypt) do
+    Warden::Strategies.add(:password) do
       def valid?
         params[:username] || params[:password]
       end
@@ -62,7 +62,7 @@ module CreeperMon
     end
 
     Warden::Manager.serialize_into_session {|user| user.id }
-    Warden::Manager.serialize_from_session {|id| User.get(id) }
+    Warden::Manager.serialize_from_session {|id| User.find(id) }
 
     ##
     # You can configure for a specified environment like:

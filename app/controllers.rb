@@ -15,24 +15,29 @@ CreeperMon::App.controllers  do
   end
 
   post :signup do
-    p params
     u = User.new(
-      name: params["name"],
+      name: params["username"],
       password: params["password"],
       password_confirmation: params["password_confirmation"],
     )
-    p u
+    p u.errors
     u.save
-    p u
+    p u.errors
+    env['warden'].set_user(u)
 
     redirect :home
   end
 
   get :home do
-    @title = "Home"
-    sites = (0..10).to_a.map {|i| Site.new(rand(36**15).to_s(36), "https://example.com/blah.git") }
-    @config = OpenStruct.new(:location => "", :sites => sites)
-    render :home
+    p current_user
+    if !authenticated?
+      redirect url(:index)
+    else
+      @title = "Home"
+      sites = (0..10).to_a.map {|i| Site.new(rand(36**15).to_s(36), "https://example.com/blah.git") }
+      @config = OpenStruct.new(:location => "", :sites => sites)
+      render :home
+    end
   end
 end
 
