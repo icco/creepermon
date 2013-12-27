@@ -48,6 +48,3 @@ CreeperMon::App.controllers :config do
     redirect url(:home)
   end
 end
-
-class Site < Struct.new(:name, :repo)
-end

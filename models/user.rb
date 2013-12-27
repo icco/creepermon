@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   include BCrypt
 
+  has_many :sites
+
   validates :name, :crypted_password, presence: true
 
   # If you create an object, this makes sure there is both password and
