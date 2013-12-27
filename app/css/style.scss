@@ -12,10 +12,14 @@ body {
   margin: 3rem 0;
 }
 
-a {
+a, a:visited {
   color: $primary-link-color;
   font-weight: 700;
   text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 pre {

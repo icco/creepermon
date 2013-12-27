@@ -5,20 +5,30 @@ CreeperMon::App.controllers  do
   end
 
   get :login do
-    redirect url(:sessions, :login)
+    @title ="Login"
+    render 'sessions/login'
   end
 
-  post :login do
-    redirect :home
+  get :signup do
+    @title = "Signup"
+    render 'sessions/new'
   end
 
   post :signup do
+    p params
+    u = User.new(
+      name: params["name"],
+      password: params["password"],
+      password_confirmation: params["password_confirmation"],
+    )
+    p u
+    u.save
+    p u
+
     redirect :home
   end
 
   get :home do
-    require 'ostruct'
-
     @title = "Home"
     sites = (0..10).to_a.map {|i| Site.new(rand(36**15).to_s(36), "https://example.com/blah.git") }
     @config = OpenStruct.new(:location => "", :sites => sites)
