@@ -3,8 +3,8 @@
     <% form_tag '/config/update', :class => 'pure-form', :method => 'post' do %>
       <fieldset>
         <legend>Config Git Repo</legend>
-        <%= text_field_tag :location, :value => @config.location, :placeholder => "git@github.com:user/repo.git", :class => "unit four-of-five" %>
-        <%= submit_tag 'Update', :class => 'pure-button pure-button-primary pure-button-small unit one-of-five', :style => "font-size: 80%;"%>
+        <%= text_field_tag :location, :value => current_user.repo, :placeholder => "git@github.com:user/repo.git", :class => "unit four-of-five" %>
+        <%= submit_tag 'Update', :class => 'pure-button pure-button-primary pure-button-small unit one-of-five', :style => "line-height: 1rem;"%>
       </fieldset>
     <% end %>
   </div>

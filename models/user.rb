@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   validates :password, confirmation: true
 
   def password
-    @password ||= Password.new(password_hash)
+    @password ||= Password.new(self.crypted_password)
   end
 
   def password=(new_password)

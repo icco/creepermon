@@ -1,5 +1,4 @@
 CreeperMon::App.controllers  do
-
   get :index do
     render :index
   end
@@ -25,7 +24,7 @@ CreeperMon::App.controllers  do
     p u.errors
     env['warden'].set_user(u)
 
-    redirect :home
+    redirect url(:home)
   end
 
   get :home do
@@ -38,6 +37,15 @@ CreeperMon::App.controllers  do
       @config = OpenStruct.new(:location => "", :sites => sites)
       render :home
     end
+  end
+end
+
+CreeperMon::App.controllers :config do
+  post :update do
+    current_user.repo = params["location"]
+    current_user.save
+
+    redirect url(:home)
   end
 end
 
