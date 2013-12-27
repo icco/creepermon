@@ -22,6 +22,16 @@ a:hover {
   text-decoration: underline;
 }
 
+h1.site_title {
+  a {
+    color: $primary-text-color;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+}
+
 pre {
   color: #8c7054;
   font-family: source-code-pro,Consolas,Monaco,'Andale Mono',monospace;

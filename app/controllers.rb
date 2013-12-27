@@ -57,7 +57,7 @@ CreeperMon::App.controllers :user do
       redirect url(:index)
     else
       @title = "Edit User"
-      "blah"
+      render :user_edit
     end
   end
 end
