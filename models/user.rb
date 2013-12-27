@@ -17,4 +17,12 @@ class User < ActiveRecord::Base
     @password = Password.create(new_password)
     self.crypted_password = @password
   end
+
+  # https://github.com/collectiveidea/delayed_job/blob/master/README.md
+  def grab_config
+    config = {}
+    Dir.mktmpdir("creeper") do |dir|
+    end
+  end
+  handle_asynchronously :grab_config
 end
