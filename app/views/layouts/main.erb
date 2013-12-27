@@ -16,7 +16,7 @@
       <div class="grid">
         <header class="unit span-grid" role="banner">
         <h1 class="site-title">Creeper</h1>
-        <h2 class="site-tagline">A Deployment Tool</h2>
+        <h2 class="site-tagline">A Deployment Tool <%== "for #{link_to(current_user.name, url(:user, :edit))}" if current_user %></h2>
         </header>
 
         <hr class="unit span-grid">

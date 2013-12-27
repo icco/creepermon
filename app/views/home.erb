@@ -18,7 +18,7 @@
     </thead>
 
     <tbody>
-      <% @config.sites.each do |site| %>
+      <% current_user.sites.each do |site| %>
         <tr>
           <td><%= site.name %></td>
           <td><%= site.repo %></td>

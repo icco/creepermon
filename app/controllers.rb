@@ -28,15 +28,17 @@ CreeperMon::App.controllers  do
   end
 
   get :home do
-    p current_user
     if !authenticated?
       redirect url(:index)
     else
       @title = "Home"
-      sites = (0..10).to_a.map {|i| Site.new(rand(36**15).to_s(36), "https://example.com/blah.git") }
-      @config = OpenStruct.new(:location => "", :sites => sites)
       render :home
     end
+  end
+
+  get :logout do
+    session.destroy
+    redirect url(:index)
   end
 end
 
@@ -46,5 +48,16 @@ CreeperMon::App.controllers :config do
     current_user.save
 
     redirect url(:home)
+  end
+end
+
+CreeperMon::App.controllers :user do
+  get :edit do
+    if !authenticated?
+      redirect url(:index)
+    else
+      @title = "Edit User"
+      "blah"
+    end
   end
 end
