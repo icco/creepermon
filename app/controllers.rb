@@ -5,8 +5,7 @@ CreeperMon::App.controllers  do
   end
 
   get :login do
-    @title = "Login!"
-    render :login
+    redirect url(:sessions, :login)
   end
 
   post :login do

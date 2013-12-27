@@ -44,25 +44,25 @@ module CreeperMon
     register Padrino::Warden
     enable :store_location
     enable :sessions
-    Warden::Strategies.add(:password) do
+    Warden::Strategies.add(:bcrypt) do
       def valid?
-        params["email"] || params["password"]
+        params[:username] || params[:password]
       end
 
       def authenticate!
-        u = User.authenticate(params["email"], params["password"])
-        u.nil? ? fail!("Could not log in") : success!(u)
+        return fail! unless user = User.first(:name => params[:username])
+
+        if user.encrypted_password == params[:password]
+          success!(user)
+        else
+          errors.add(:login, "Username or Password incorrect")
+          fail!
+        end
       end
     end
 
-    Warden::Manager.serialize_into_session do |user|
-      user.id
-    end
-
-    Warden::Manager.serialize_from_session do |id|
-      User.get(id)
-    end
-    
+    Warden::Manager.serialize_into_session {|user| user.id }
+    Warden::Manager.serialize_from_session {|id| User.get(id) }
 
     ##
     # You can configure for a specified environment like:
