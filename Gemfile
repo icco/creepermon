@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 # Stuff we always need
 gem 'activerecord', '>= 4.0', :require => 'active_record'
 gem 'bcrypt-ruby', :require => 'bcrypt'
+gem 'delayed_job_active_record'
 gem 'erubis', '~> 2.7.0'
 gem 'json'
 gem 'mail'
