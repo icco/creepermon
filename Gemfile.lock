@@ -20,7 +20,7 @@ GIT
 
 GIT
   remote: git://github.com/padrino/padrino-framework.git
-  revision: 0f86caff62814ed1d1d5d24815b2867d617b3573
+  revision: 0c9891cf0c8fc6d7b56adccf0aba08ecce631978
   specs:
     padrino (0.12.0.rc2)
       padrino-admin (= 0.12.0.rc2)
@@ -92,7 +92,7 @@ GEM
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.0.2)
-    faraday (0.8.8)
+    faraday (0.8.9)
       multipart-post (~> 1.2.0)
     grit (2.5.0)
       diff-lcs (~> 1.1)
@@ -109,9 +109,9 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
-    minitest (5.2.0)
+    minitest (5.2.1)
     moneta (0.7.20)
-    multi_json (1.8.2)
+    multi_json (1.8.4)
     multipart-post (1.2.0)
     numbers_and_words (0.10.0)
       activesupport
@@ -139,11 +139,11 @@ GEM
       rack (~> 1.4)
       rack-protection (~> 1.4)
       tilt (~> 1.3, >= 1.3.4)
-    sinatra-assetpack (0.3.1)
+    sinatra-assetpack (0.3.2)
       jsmin
       rack-test
       sinatra
-      tilt (>= 1.3.0)
+      tilt (>= 1.3.0, < 2.0)
     sprockets (2.10.1)
       hike (~> 1.2)
       multi_json (~> 1.0)
