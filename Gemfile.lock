@@ -20,7 +20,7 @@ GIT
 
 GIT
   remote: git://github.com/padrino/padrino-framework.git
-  revision: 00da88b194d3a6686ed7f280474f0bd07d65d7c7
+  revision: ea42097753dd24ea627f201023ed2a6cf89cf18d
   specs:
     padrino (0.12.0)
       padrino-admin (= 0.12.0)
