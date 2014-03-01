@@ -64,3 +64,15 @@ CreeperMon::App.controllers  do
     redirect '/'
   end
 end
+
+CreeperMon::App.controllers :user do
+  layout :main
+  get :edit do
+    if !authenticated?
+      redirect url(:index)
+    else
+      @title = "Edit User"
+      render :user_edit
+    end
+  end
+end
