@@ -16,10 +16,10 @@ I18n.default_locale = :en
 I18n.enforce_available_locales = false
 
 ## Add helpers to mailer
-Mail::Message.class_eval do
-  include Padrino::Helpers::NumberHelpers
-  include Padrino::Helpers::TranslationHelpers
-end
+#Mail::Message.class_eval do
+#  include Padrino::Helpers::NumberHelpers
+#  include Padrino::Helpers::TranslationHelpers
+#end
 
 ##
 # Add your before (RE)load hooks here
