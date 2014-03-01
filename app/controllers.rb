@@ -6,6 +6,9 @@ CreeperMon::App.controllers  do
       redirect url(:index)
     else
       @title = "Home"
+      p User.connection
+      @user = current_user
+      p @user
       render :home
     end
   end
@@ -30,7 +33,7 @@ CreeperMon::App.controllers  do
     session[:user] = auth["info"]["nickname"]
     session[:token] = auth["credentials"]["token"]
 
-    redirect "/"
+    redirect url(:home)
   end
 
   # Developer callback
@@ -42,9 +45,9 @@ CreeperMon::App.controllers  do
       session[:user] = auth["info"]["nickname"]
       session[:token] = nil
 
-      redirect "/"
+      redirect url(:home)
     else
-      redirect :logout
+      redirect url(:logout)
     end
   end
 
