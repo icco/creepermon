@@ -19,8 +19,7 @@ CreeperMon::App.controllers  do
   end
 
   get :login do
-    provider = Padrino.env == :development ? "developer" : "github"
-    redirect "/auth/#{provider}"
+    render :login
   end
 
   # Github callback
