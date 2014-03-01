@@ -1,28 +1,20 @@
 CreeperMon::App.controllers  do
   layout :main
 
-  get :index do
-    if session[:user].nil?
-      render :login
+  get :home do
+    if !authenticated?
+      redirect url(:index)
     else
-      @user = User.factory session[:user]
-      if @user.target
-        render :index
-      else
-        render :new_user
-      end
+      @title = "Home"
+      render :home
     end
   end
 
-  post :index do
-    if session[:user].nil?
-      redirect :login
+  get :index do
+    if authenticated?
+      redirect url(:home)
     else
-      @user = User.factory session[:user]
-      @user.target = params[:target]
-      @user.save
-
-      redirect '/'
+      render :index
     end
   end
 
