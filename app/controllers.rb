@@ -1,23 +1,72 @@
 CreeperMon::App.controllers  do
-  
-  # get :index, :map => '/foo/bar' do
-  #   session[:foo] = 'bar'
-  #   render 'index'
-  # end
+  layout :main
 
-  # get :sample, :map => '/sample/url', :provides => [:any, :js] do
-  #   case content_type
-  #     when :js then ...
-  #     else ...
-  # end
+  get :index do
+    if session[:user].nil?
+      render :login
+    else
+      @user = User.factory session[:user]
+      if @user.target
+        render :index
+      else
+        render :new_user
+      end
+    end
+  end
 
-  # get :foo, :with => :id do
-  #   'Maps to url '/foo/#{params[:id]}''
-  # end
+  post :index do
+    if session[:user].nil?
+      redirect :login
+    else
+      @user = User.factory session[:user]
+      @user.target = params[:target]
+      @user.save
 
-  # get '/example' do
-  #   'Hello world!'
-  # end
-  
+      redirect '/'
+    end
+  end
 
+  get :login do
+    provider = Padrino.env == :development ? "developer" : "github"
+    redirect "/auth/#{provider}"
+  end
+
+  # Github callback
+  get "/auth/github/callback" do
+    auth = request.env["omniauth.auth"]
+    logger.push(" Github: #{auth.inspect}", :devel)
+
+    session[:user] = auth["info"]["nickname"]
+    session[:token] = auth["credentials"]["token"]
+
+    redirect "/"
+  end
+
+  # Developer callback
+  post "/auth/developer/callback" do
+    auth = request.env["omniauth.auth"]
+    logger.push(" Devel: #{auth.inspect}", :devel)
+
+    if !auth["info"]["nickname"].empty?
+      session[:user] = auth["info"]["nickname"]
+      session[:token] = nil
+
+      redirect "/"
+    else
+      redirect :logout
+    end
+  end
+
+  get "/auth/failure" do
+    params[:message]
+  end
+
+  get :logout do
+    if session
+      session[:user] = nil
+      session[:token] = nil
+    end
+
+    redirect '/'
+  end
 end

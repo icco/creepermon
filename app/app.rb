@@ -18,6 +18,12 @@ module CreeperMon
     set :dump_errors, true        # Exception backtraces are written to STDERR (default for production/development)
     set :logging, true            # Logging in STDOUT for development and file for production (default only for development)
 
+    OmniAuth.config.logger = logger
+    use OmniAuth::Builder do
+      provider :developer, :fields => [:nickname] if RACK_ENV == "development"
+      provider :github, ENV['GITHUB_CLIENT_ID'], ENV['GITHUB_CLIENT_SECRET'], scope: "user,repo"
+    end
+
     ##
     # Errors
     error 404 do
