@@ -1,63 +1,23 @@
 CreeperMon::App.controllers  do
-  get :index do
-    render :index
-  end
+  
+  # get :index, :map => '/foo/bar' do
+  #   session[:foo] = 'bar'
+  #   render 'index'
+  # end
 
-  get :login do
-    @title ="Login"
-    render 'sessions/login'
-  end
+  # get :sample, :map => '/sample/url', :provides => [:any, :js] do
+  #   case content_type
+  #     when :js then ...
+  #     else ...
+  # end
 
-  get :signup do
-    @title = "Signup"
-    render 'sessions/new'
-  end
+  # get :foo, :with => :id do
+  #   'Maps to url '/foo/#{params[:id]}''
+  # end
 
-  post :signup do
-    u = User.new(
-      name: params["username"],
-      password: params["password"],
-      password_confirmation: params["password_confirmation"],
-    )
-    p u.errors
-    u.save
-    p u.errors
-    env['warden'].set_user(u)
+  # get '/example' do
+  #   'Hello world!'
+  # end
+  
 
-    redirect url(:home)
-  end
-
-  get :home do
-    if !authenticated?
-      redirect url(:index)
-    else
-      @title = "Home"
-      render :home
-    end
-  end
-
-  get :logout do
-    session.destroy
-    redirect url(:index)
-  end
-end
-
-CreeperMon::App.controllers :config do
-  post :update do
-    current_user.repo = params["location"]
-    current_user.save
-
-    redirect url(:home)
-  end
-end
-
-CreeperMon::App.controllers :user do
-  get :edit do
-    if !authenticated?
-      redirect url(:index)
-    else
-      @title = "Edit User"
-      render :user_edit
-    end
-  end
 end

@@ -15,7 +15,6 @@ gem 'padrino', :github => 'padrino/padrino-framework'
 gem 'pg'
 gem 'rake'
 gem 'sass'
-gem 'sinatra-assetpack', :require => 'sinatra/assetpack'
 gem 'thin'
 gem 'uglifier'
 
