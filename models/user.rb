@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  validates_format_of :name, :with => /^[-a-z0-9_+\.]+$/i
+  validates_format_of :name, :with => /\A[-a-z0-9_+\.]+\z/i
   validates_uniqueness_of :name
   validates_format_of :email, :with => /@/
 
