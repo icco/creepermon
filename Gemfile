@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Stuff we always need
 gem 'actionview', "~> 4.1.0.beta1", :require => 'action_view'
 gem 'activerecord', "~> 4.1.0.beta1", :require => 'active_record'
-gem 'bcrypt-ruby', :require => 'bcrypt'
+gem 'bcrypt'
 gem 'delayed_job_active_record'
 gem 'erubis', '~> 2.7.0'
 gem 'grit'
