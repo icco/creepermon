@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/padrino/padrino-framework.git
-  revision: db5ffc5a597013754cb98e8ce637789079549795
+  revision: d8d9fa62392428c551c0a7f40300270d22a2b3c4
   specs:
     padrino (0.12.0)
       padrino-admin (= 0.12.0)
@@ -59,7 +59,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.5)
     arel (5.0.0)
-    atomic (1.1.15)
+    atomic (1.1.16)
     bcrypt (3.1.7)
     builder (3.2.2)
     daemons (1.1.9)
@@ -91,7 +91,7 @@ GEM
     mime-types (1.25.1)
     minitest (5.3.1)
     moneta (0.7.20)
-    multi_json (1.9.0)
+    multi_json (1.9.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     numbers_and_words (0.10.0)
