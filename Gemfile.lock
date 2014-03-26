@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/padrino/padrino-framework.git
-  revision: d8d9fa62392428c551c0a7f40300270d22a2b3c4
+  revision: 0eea8a682efc44862a8313bbec22ba0fcabe1a22
   specs:
     padrino (0.12.0)
       padrino-admin (= 0.12.0)
@@ -40,18 +40,18 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    actionview (4.1.0.rc1)
-      activesupport (= 4.1.0.rc1)
+    actionview (4.1.0.rc2)
+      activesupport (= 4.1.0.rc2)
       builder (~> 3.1)
       erubis (~> 2.7.0)
-    activemodel (4.1.0.rc1)
-      activesupport (= 4.1.0.rc1)
+    activemodel (4.1.0.rc2)
+      activesupport (= 4.1.0.rc2)
       builder (~> 3.1)
-    activerecord (4.1.0.rc1)
-      activemodel (= 4.1.0.rc1)
-      activesupport (= 4.1.0.rc1)
+    activerecord (4.1.0.rc2)
+      activemodel (= 4.1.0.rc2)
+      activesupport (= 4.1.0.rc2)
       arel (~> 5.0.0)
-    activesupport (4.1.0.rc1)
+    activesupport (4.1.0.rc2)
       i18n (~> 0.6, >= 0.6.9)
       json (~> 1.7, >= 1.7.7)
       minitest (~> 5.1)
@@ -125,7 +125,7 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
-    rake (10.1.1)
+    rake (10.2.1)
     rr (1.1.2)
     sass (3.3.4)
     sawyer (0.5.4)
