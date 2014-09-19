@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/padrino/padrino-framework.git
-  revision: b3d45b8ce7ce15747777a8da75f161c53c26a8d2
+  revision: 6fa790b4514903c3139b681413435e599bf00db3
   specs:
     padrino (0.12.3)
       padrino-admin (= 0.12.3)
@@ -40,18 +40,18 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    actionview (4.1.6.rc1)
-      activesupport (= 4.1.6.rc1)
+    actionview (4.1.6)
+      activesupport (= 4.1.6)
       builder (~> 3.1)
       erubis (~> 2.7.0)
-    activemodel (4.1.6.rc1)
-      activesupport (= 4.1.6.rc1)
+    activemodel (4.1.6)
+      activesupport (= 4.1.6)
       builder (~> 3.1)
-    activerecord (4.1.6.rc1)
-      activemodel (= 4.1.6.rc1)
-      activesupport (= 4.1.6.rc1)
+    activerecord (4.1.6)
+      activemodel (= 4.1.6)
+      activesupport (= 4.1.6)
       arel (~> 5.0.0)
-    activesupport (4.1.6.rc1)
+    activesupport (4.1.6)
       i18n (~> 0.6, >= 0.6.9)
       json (~> 1.7, >= 1.7.7)
       minitest (~> 5.1)
@@ -62,7 +62,7 @@ GEM
     bcrypt (3.1.7)
     builder (3.2.2)
     daemons (1.1.9)
-    delayed_job (4.0.2)
+    delayed_job (4.0.3)
       activesupport (>= 3.0, < 4.2)
     delayed_job_active_record (4.0.2)
       activerecord (>= 3.0, < 4.2)
@@ -125,7 +125,7 @@ GEM
       rack (>= 1.0)
     rake (10.3.2)
     rr (1.1.2)
-    sass (3.4.2)
+    sass (3.4.4)
     sawyer (0.5.5)
       addressable (~> 2.3.5)
       faraday (~> 0.8, < 0.10)
