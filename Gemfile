@@ -26,5 +26,6 @@ group :test do
 end
 
 group :development do
+  gem "heroku"
   gem "shotgun"
 end
