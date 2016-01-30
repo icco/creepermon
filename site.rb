@@ -10,22 +10,25 @@ require "logger"
 
 require "./lib/logging.rb"
 require "./lib/scss_init.rb"
+require "./lib/config.rb"
 
-class Creepermon < Sinatra::Base
-  register ScssInitializer
-  use Rack::Deflater
-  register Sinatra::ActiveRecordExtension
+module Creepermon
+  class Site < Sinatra::Base
+    register ScssInitializer
+    use Rack::Deflater
+    register Sinatra::ActiveRecordExtension
 
-  layout :main
+    layout :main
 
-  configure do
-    enable :caching
-    set :logging, true
-    set :protection, true
-    set :protect_from_csrf, true
-  end
+    configure do
+      enable :caching
+      set :logging, true
+      set :protection, true
+      set :protect_from_csrf, true
+    end
 
-  get "/" do
-    erb :index
+    get "/" do
+      erb :index
+    end
   end
 end

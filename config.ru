@@ -4,4 +4,4 @@
 $stdout.sync = true
 
 require './site'
-run Sinatra::Application
+run Creepermon::Site
