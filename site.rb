@@ -4,9 +4,7 @@ require "rubygems" unless defined?(Gem)
 require "bundler/setup"
 Bundler.require(:default, RACK_ENV)
 
-require "json"
 require "open-uri"
-require "rss"
 require "set"
 require "logger"
 
