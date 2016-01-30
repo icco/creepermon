@@ -1,0 +1,7 @@
+sites:
+  -
+    url: "https://writing.natwelch.com/stats"
+    xpath: '//*[@id="stats"]/div[1]/div[1]/div[1]'
+  -
+    url: "http://mood.natwelch.com/"
+    xpath: '//*[@id="total"]'
