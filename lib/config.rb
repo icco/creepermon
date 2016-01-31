@@ -10,7 +10,7 @@ module Creepermon
       raise "No url to scrape in #{site.inspect}" unless site["url"]
       site["xpath"] ||= ""
 
-      @sites.push site
+      @sites.push(Site.new(site["url"], site["xpath"]))
     end
 
     def self.load_config filename="sites.yml"

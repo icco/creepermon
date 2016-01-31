@@ -13,7 +13,8 @@ end
 desc "Scrape your sites."
 task :cron do
   config = Creepermon::Config.load_config "./sites.yml"
-  p config
 
-  raise "DOES NOT EXIST YET."
+  config.sites.each do |s|
+    p s.scrape
+  end
 end

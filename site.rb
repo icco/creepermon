@@ -4,16 +4,15 @@ require "rubygems" unless defined?(Gem)
 require "bundler/setup"
 Bundler.require(:default, RACK_ENV)
 
-require "open-uri"
-require "set"
 require "logger"
 
 require "./lib/logging.rb"
 require "./lib/scss_init.rb"
 require "./lib/config.rb"
+require "./lib/site.rb"
 
 module Creepermon
-  class Site < Sinatra::Base
+  class Website < Sinatra::Base
     register ScssInitializer
     use Rack::Deflater
     register Sinatra::ActiveRecordExtension

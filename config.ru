@@ -4,4 +4,4 @@
 $stdout.sync = true
 
 require './site'
-run Creepermon::Site
+run Creepermon::Website
