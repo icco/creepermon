@@ -15,6 +15,7 @@ task :cron do
   config = Creepermon::Config.load_config "./sites.yml"
 
   config.sites.each do |s|
-    p s.scrape
+    data = s.scrape
+    Keen.publish(:scrape, data)
   end
 end
