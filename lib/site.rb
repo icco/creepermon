@@ -12,12 +12,11 @@ module Creepermon
       request.run
 
       response = request.response
-      time = response.total_time
 
       data = Nokogiri::HTML(response.body)
       value = data.at_xpath(xpath).child.to_s.to_f
 
-      return {value: value, time: time}
+      return {value: value, request_length: response.total_time, code: response.code}
     end
   end
 end
