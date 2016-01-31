@@ -18,6 +18,7 @@ gem "sass"
 gem "sinatra"
 gem "sinatra-activerecord", :require => "sinatra/activerecord"
 gem "thin"
+gem "typhoeus"
 
 group :test do
   gem "minitest", :require => "minitest/autorun"
