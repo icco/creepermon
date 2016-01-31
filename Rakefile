@@ -16,6 +16,7 @@ task :cron do
 
   config.sites.each do |s|
     data = s.scrape
+    data[:url] = s.url
     Keen.publish(:scrape, data)
   end
 end
