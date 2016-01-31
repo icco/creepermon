@@ -5,3 +5,6 @@ sites:
   -
     url: "http://mood.natwelch.com/"
     xpath: '//*[@id="total"]'
+  -
+    url: "http://www.sadnat.com/about"
+    xpath: '//*[@id="count"]'
