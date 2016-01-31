@@ -15,3 +15,15 @@ Each scrape collects:
  - Value to xpath target
 
 The value of the xpath target is turned into an integer before storage.
+
+## Installation
+
+Clone, change `sites.yml`, push to heroku.
+
+Set Heroku config:
+
+```sh
+heroku config:set KEEN_PROJECT_ID=aaaaaaaaaaaaaaaaaaaaaaaa KEEN_READ_KEY=eeeeeeeeeeeeeeeeeeeeeeee KEEN_WRITE_KEY=ffffffffffffffffffffffff
+heroku config:set LANG=en_US.UTF-8
+heroku config:set RACK_ENV=production
+```
