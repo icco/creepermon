@@ -17,6 +17,11 @@ task :cron do
   config.sites.each do |s|
     data = s.scrape
     data[:url] = s.url
-    Keen.publish(:scrape, data)
+
+    if RACK_ENV.to_sym != :development
+      Keen.publish(:scrape, data)
+    else
+      p data
+    end
   end
 end
