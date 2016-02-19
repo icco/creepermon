@@ -8,3 +8,6 @@ sites:
   -
     url: "http://www.sadnat.com/about"
     xpath: '//*[@id="count"]'
+  -
+    url: "http://newyork.welch.io/"
+    xpath: "/"
