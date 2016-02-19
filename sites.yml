@@ -3,11 +3,11 @@ sites:
     url: "https://writing.natwelch.com/stats"
     xpath: '//*[@id="stats"]/div[1]/div[1]/div[1]'
   -
-    url: "http://mood.natwelch.com/"
+    url: "https://mood.natwelch.com/"
     xpath: '//*[@id="total"]'
   -
     url: "http://www.sadnat.com/about"
     xpath: '//*[@id="count"]'
   -
     url: "http://newyork.welch.io/"
-    xpath: "/"
+    xpath: '//*[@id="uptime"]'
