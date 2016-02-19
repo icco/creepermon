@@ -8,7 +8,7 @@ module Creepermon
     end
 
     def scrape
-      request = Typhoeus::Request.new(url, method: :get)
+      request = Typhoeus::Request.new(url, method: :get, followlocation: true)
       request.run
 
       response = request.response
