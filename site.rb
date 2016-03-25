@@ -12,6 +12,7 @@ require "./lib/config.rb"
 require "./lib/site.rb"
 
 module Creepermon
+
   class Website < Sinatra::Base
     register ScssInitializer
     use Rack::Deflater
@@ -27,6 +28,9 @@ module Creepermon
     end
 
     get "/" do
+      @keen_project_id = ENV["KEEN_PROJECT_ID"]
+      @keen_read_key = ENV["KEEN_READ_KEY"]
+
       erb :index
     end
   end
