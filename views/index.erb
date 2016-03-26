@@ -19,20 +19,29 @@
         readKey: "<%= @keen_read_key %>"
       });
 
-      Keen.ready(function() {
-        histogram('dom-element-id', {
-          segment_length: 60,  // In seconds
-          data_points: 10,  // i.e. There will be 10 bars on our chart
-          analysis_type: 'count',
-          query_parameters: {
-            event_collection: 'session_end',
-            timeframe: timeframe,
-            filters: []
+
+      Keen.ready(function(){
+
+        var query = new Keen.Query("average", {
+          eventCollection: "scrape",
+          filters: [
+          {
+            "operator": "contains",
+            "property_name": "url",
+            "property_value": "natwelch.com"
           }
+          ],
+          interval: "daily",
+          targetProperty: "request_length",
+          timeframe: "this_3_months",
+          timezone: "UTC"
+        });
+
+        client.draw(query, document.getElementById("my_chart"), {
+          // Custom configuration here
         });
       });
 
-      var timeframe = 'last_7_days';
       var colors = [
         "#56c5d1" // Add colors as desired.
       ];
