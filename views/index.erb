@@ -15,13 +15,14 @@
   <body class="pa1 mw7">
     <h1>Creepermon</h1>
 
-    <p>Creepermon is currently a site monitoring <a href="https://twitter.com/icco">@icco</a>'s web stuff. But, he's working on turning it into a library that anyone can use. You can check out the code <a href="https://github.com/icco/creepermon">on github</a>.
+    <p>Creepermon is currently a site monitoring <a href="https://twitter.com/icco">@icco</a>'s web stuff. But, he is working on turning it into a library that anyone can use. You can check out the code <a href="https://github.com/icco/creepermon">on github</a>.
 
     <div id="graph"></div>
 
     <script>
       var client = new Keen({
         protocol: "https",
+        dataType: "jsonp",
         projectId: "<%= @keen_project_id %>",
         readKey: "<%= @keen_read_key %>"
       });
@@ -42,15 +43,15 @@
         });
 
         var chart = new Keen.Dataviz()
-          .el(document.getElementById('graph'))
-          .library('c3')
-          .chartType('area')
+          .el(document.getElementById("graph"))
+          .library("c3")
+          .chartType("area")
           .chartOptions({
             x: {
-              type: 'timeseries',
+              type: "timeseries",
               tick: {
                 count: 6,
-                format: '%Y-%m-%d'
+                format: "%Y-%m-%d"
               }
             },
             y: {
