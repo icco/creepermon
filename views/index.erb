@@ -25,7 +25,7 @@
         projectId: "<%= @keen_project_id %>",
         readKey: "<%= @keen_read_key %>"
       });
-      Keen.ready(function(){
+      Keen.ready(function() {
         var query = new Keen.Query("average", {
           eventCollection: "scrape",
           filters: [
@@ -37,29 +37,37 @@
           ],
           interval: "daily",
           targetProperty: "request_length",
-          timeframe: "this_30_days",
+          timeframe: "this_100_days",
           timezone: "UTC"
         });
 
-        var res = client.draw(query, document.getElementById("graph"), {
-          library: 'c3',
-          chartType: 'line',
-          chartOptions: {
-            axis: {
-              x: {
-                type: 'timeseries',
-                tick: {
-                  count: 6,
-                  format: '%Y-%m-%d'
-                }
-              },
-              y: {
-                label: "Average request time"
-              },
-            }
+        var chart = new Keen.Dataviz()
+          .el(document.getElementById('graph'))
+          .library('c3')
+          .chartType('area')
+          .chartOptions({
+            x: {
+              type: 'timeseries',
+              tick: {
+                count: 6,
+                format: '%Y-%m-%d'
+              }
+            },
+            y: {
+              label: "Average request time"
+            },
+          })
+          .prepare();
+
+        var req = client.run(query, function(err, res) {
+          if (err) {
+            // Display the API error
+            console.log(err, res, req);
+            chart.error(err.message);
+          } else {
+            chart.parseRequest(this).render();
           }
         });
-        console.log(res, client.error);
       });
     </script>
   </body>
