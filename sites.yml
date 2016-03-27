@@ -11,3 +11,6 @@ sites:
   -
     url: "http://newyork.welch.io/"
     xpath: '//*[@id="uptime"]'
+  -
+    url: "https://monitor.natwelch.com/"
+    xpath: '//*[@id="sites"]'
