@@ -27,9 +27,14 @@ module Creepermon
       set :protect_from_csrf, true
     end
 
+    before do
+      @config = Config.load_config
+    end
+
     get "/" do
       @keen_project_id = ENV["KEEN_PROJECT_ID"]
       @keen_read_key = ENV["KEEN_READ_KEY"]
+      @sites = @config.sites
 
       erb :index
     end

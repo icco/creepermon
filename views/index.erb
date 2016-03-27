@@ -19,7 +19,11 @@
 
     <div id="alert"></div>
 
-    <div id="graph"></div>
+    <% @sites.each.with_index do |s, i| %>
+      <h2><%= s.url %></h2>
+      <div class="request-graph" id="graph-<%= i %>-request" data-url="<%= s.url %>"></div>
+      <div class="data-graph" id="graph-<%= i %>-data" data-url="<%= s.url %>"></div>
+    <% end %>
 
     <script>
       if (!Keen) {
@@ -32,49 +36,54 @@
         projectId: "<%= @keen_project_id %>",
         readKey: "<%= @keen_read_key %>"
       });
+
       Keen.ready(function() {
-        var query = new Keen.Query("average", {
-          eventCollection: "scrape",
-          filters: [
-            {
-              "operator": "eq",
-              "property_name": "url",
-              "property_value": "https://writing.natwelch.com/stats"
-            }
-          ],
-          interval: "daily",
-          targetProperty: "request_length",
-          timeframe: "this_100_days",
-          timezone: "UTC"
-        });
-
-        var chart = new Keen.Dataviz()
-          .el(document.getElementById("graph"))
-          .library("c3")
-          .chartType("area")
-          .chartOptions({
-            x: {
-              type: "timeseries",
-              tick: {
-                count: 6,
-                format: "%Y-%m-%d"
+        var els = document.getElementsByClassName("request-graph");
+        for (var el = 0; el < els.length; el++) {
+          console.log(els[el]);
+          var query = new Keen.Query("average", {
+            eventCollection: "scrape",
+            filters: [
+              {
+                "operator": "eq",
+                "property_name": "url",
+                "property_value": els[el].dataset.url
               }
-            },
-            y: {
-              label: "Average request time"
-            },
-          })
-          .prepare();
+            ],
+            interval: "daily",
+            targetProperty: "request_length",
+            timeframe: "this_100_days",
+            timezone: "UTC"
+          });
 
-        var req = client.run(query, function(err, res) {
-          if (err) {
-            // Display the API error
-            console.log(err, res, req);
-            chart.error(err.message);
-          } else {
-            chart.parseRequest(this).render();
-          }
-        });
+          var chart = new Keen.Dataviz()
+            .el(els[el])
+            .library("c3")
+            .chartType("area")
+            .chartOptions({
+              x: {
+                type: "timeseries",
+                tick: {
+                  count: 6,
+                  format: "%Y-%m-%d"
+                }
+              },
+              y: {
+                label: "Average request time"
+              },
+            })
+            .prepare();
+
+          var req = client.run(query, function(err, res) {
+            if (err) {
+              // Display the API error
+              console.log(err, res, req);
+              chart.error(err.message);
+            } else {
+              chart.parseRequest(this).render();
+            }
+          });
+        }
       });
     </script>
   </body>
