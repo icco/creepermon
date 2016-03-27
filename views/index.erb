@@ -39,9 +39,11 @@
 
       Keen.ready(function() {
         var els = document.getElementsByClassName("request-graph");
+        var queries = [];
+        var charts = [];
         for (var el = 0; el < els.length; el++) {
           console.log(els[el]);
-          var query = new Keen.Query("average", {
+          queries[el] = new Keen.Query("average", {
             eventCollection: "scrape",
             filters: [
               {
@@ -53,10 +55,11 @@
             interval: "daily",
             targetProperty: "request_length",
             timeframe: "this_100_days",
-            timezone: "UTC"
+            timezone: "UTC",
+            max_age: 3600
           });
 
-          var chart = new Keen.Dataviz()
+          charts[el] = new Keen.Dataviz()
             .el(els[el])
             .library("c3")
             .chartType("area")
@@ -74,13 +77,15 @@
             })
             .prepare();
 
-          var req = client.run(query, function(err, res) {
+          var req = client.run(queries, function(err, res) {
             if (err) {
               // Display the API error
               console.log(err, res, req);
               chart.error(err.message);
             } else {
-              chart.parseRequest(this).render();
+              for (var i = 0; i < res.length; i++) {
+                charts[i].parseRawData(res[i]).render();
+              }
             }
           });
         }
