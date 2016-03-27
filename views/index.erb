@@ -17,9 +17,15 @@
 
     <p>Creepermon is currently a site monitoring <a href="https://twitter.com/icco">@icco</a>'s web stuff. But, he is working on turning it into a library that anyone can use. You can check out the code <a href="https://github.com/icco/creepermon">on github</a>.
 
+    <div id="alert"></div>
+
     <div id="graph"></div>
 
     <script>
+      if (!Keen) {
+        document.getElementById('alert').textContent="You are blocking Keen.io with some sort of Ad Blocker. Keen.io is our datasource, so we can't get data and show it to you.";
+      }
+
       var client = new Keen({
         protocol: "https",
         requestType: "jsonp",
