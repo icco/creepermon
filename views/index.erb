@@ -17,6 +17,8 @@
 
     <p>Creepermon is currently a site monitoring <a href="https://twitter.com/icco">@icco</a>'s web stuff. But, he is working on turning it into a library that anyone can use. You can check out the code <a href="https://github.com/icco/creepermon">on github</a>.
 
+    <p>There are currently <span id="sites"><%= @sites.count %></span> URLs monitored.</p>
+
     <div id="alert"></div>
 
     <% @sites.each.with_index do |s, i| %>
