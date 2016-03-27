@@ -1,17 +1,18 @@
+<!doctype html>
 <html>
   <head>
     <title>Creepermon</title>
     <link rel="stylesheet" href="https://npmcdn.com/tachyons@4.0.0-beta.12/css/tachyons.min.css">
-
+    <link rel="icon" href="/favicon.ico">
     <script src="/js/d3.v3.min.js" charset="utf-8"></script>
     <script src="/js/k.min.js?v=3.4.0" type="text/javascript"></script>
   </head>
-  <body>
+  <body class="pa1 mw7">
     <h1>Creepermon</h1>
 
     <p>Creepermon is currently a site monitoring <a href="https://twitter.com/icco">@icco</a>'s web stuff. But, he's working on turning it into a library that anyone can use. You can check out the code <a href="https://github.com/icco/creepermon">on github</a>.
 
-    <div id=""> </div>
+    <div id="graph"></div>
 
     <script>
       var client = new Keen({
@@ -19,9 +20,7 @@
         readKey: "<%= @keen_read_key %>"
       });
 
-
       Keen.ready(function(){
-
         var query = new Keen.Query("average", {
           eventCollection: "scrape",
           filters: [
