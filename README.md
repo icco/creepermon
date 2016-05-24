@@ -27,3 +27,13 @@ heroku config:set KEEN_PROJECT_ID=aaaaaaaaaaaaaaaaaaaaaaaa KEEN_READ_KEY=eeeeeee
 heroku config:set LANG=en_US.UTF-8
 heroku config:set RACK_ENV=production
 ```
+
+Add the [Heroku Scheduler](https://scheduler.heroku.com/)
+
+```sh
+heroku addons:create scheduler:standard
+```
+
+Then add `rake cron` to run every ten minutes
+
+![sched](http://cl.natw.me/gGkM/d)
