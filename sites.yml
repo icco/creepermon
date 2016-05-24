@@ -15,7 +15,7 @@ sites:
     url: "https://monitor.natwelch.com/"
     xpath: '//*[@id="sites"]'
   -
-    url "http://cabin.welch.io/"
+    url: "http://cabin.welch.io/"
     xpath: '/html/body/p[2]/a'
   -
     url: "https://natwelch.com/"
