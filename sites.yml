@@ -20,3 +20,8 @@ sites:
   -
     url: "https://natwelch.com/"
     xpath: '//*[@id="age"]'
+  -
+    url: "https://quotes.natwelch.com/"
+    xpath: '//*[@id="max-quotes"]'
+  -
+    url: "https://hello.natwelch.com/"
