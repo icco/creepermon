@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.3.0"
+ruby "2.4.2"
 
 # Stuff we always need
 gem "activerecord", :require => "active_record"
