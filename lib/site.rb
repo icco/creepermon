@@ -15,7 +15,7 @@ module Creepermon
 
       data = Nokogiri::HTML(response.body)
       value = 0.0
-      if data && data.at_xpath(xpath)
+      if data && xpath && data.at_xpath(xpath)
         value = data.at_xpath(xpath).child.to_s.to_f
       end
 
