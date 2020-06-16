@@ -12,22 +12,22 @@ gem "nokogiri"
 gem "oj"
 gem "pg"
 gem "psych"
-gem "rack-protection", :require => "rack/protection"
+gem "rack-protection", ">= 2.0.0", :require => "rack/protection"
 gem "rake"
 gem "rdiscount"
 gem "sass"
-gem "sinatra"
-gem "sinatra-activerecord", :require => "sinatra/activerecord"
-gem "thin"
+gem "sinatra", ">= 2.0.0"
+gem "sinatra-activerecord", ">= 2.0.13", :require => "sinatra/activerecord"
+gem "thin", ">= 1.7.2"
 gem "typhoeus"
 
 group :test do
   gem "minitest", :require => "minitest/autorun"
-  gem "rack-test", :require => "rack/test"
+  gem "rack-test", ">= 0.7.0", :require => "rack/test"
   gem "rr"
 end
 
 group :development do
   gem "heroku"
-  gem "shotgun"
+  gem "shotgun", ">= 0.9.2"
 end
