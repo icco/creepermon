@@ -3,7 +3,7 @@ source "https://rubygems.org"
 ruby "2.4.2"
 
 # Stuff we always need
-gem "activerecord", :require => "active_record"
+gem "activerecord", ">= 5.2.4.5", :require => "active_record"
 gem "chronic"
 gem "erubis", "~> 2.7.0"
 gem "json"
@@ -17,7 +17,7 @@ gem "rake"
 gem "rdiscount"
 gem "sass"
 gem "sinatra"
-gem "sinatra-activerecord", :require => "sinatra/activerecord"
+gem "sinatra-activerecord", ">= 2.0.13", :require => "sinatra/activerecord"
 gem "thin"
 gem "typhoeus"
 
