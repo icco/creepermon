@@ -7,7 +7,7 @@ gem "activerecord", :require => "active_record"
 gem "chronic"
 gem "erubis", "~> 2.7.0"
 gem "json"
-gem "keen"
+gem "keen", ">= 1.0.0"
 gem "nokogiri"
 gem "oj"
 gem "pg"
@@ -28,6 +28,6 @@ group :test do
 end
 
 group :development do
-  gem "heroku"
+  gem "heroku", ">= 3.99.4"
   gem "shotgun"
 end
