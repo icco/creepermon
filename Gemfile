@@ -28,6 +28,6 @@ group :test do
 end
 
 group :development do
-  gem "heroku"
+  gem "heroku", ">= 3.99.4"
   gem "shotgun"
 end
